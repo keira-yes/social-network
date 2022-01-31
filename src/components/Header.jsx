@@ -1,5 +1,7 @@
+import classes from './Header.module.css'
+
 export const Header = () => {
     return (
-        <header className="header">Header</header>
+        <header className={classes.header}>Header</header>
     )
 }

@@ -8,15 +8,6 @@
     "sidebar main";
 }
 
-.header {
-  grid-area: header;
-  background-color: #e1e7e0;
-}
-.sidebar {
-  grid-area: sidebar;
-  background-color: #ebe6e8;
-}
-
 .main {
   grid-area: main;
 }

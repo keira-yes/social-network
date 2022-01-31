@@ -1,6 +1,8 @@
+import classes from './Sidebar.module.css';
+
 export const Sidebar = () => {
     return (
-        <aside className="sidebar">
+        <aside className={classes.sidebar}>
             <nav className="nav">
                 <ul className="nav__list">
                     <li className="nav__item">
