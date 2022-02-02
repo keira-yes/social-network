@@ -2,3 +2,7 @@
     grid-area: sidebar;
     background-color: #ebe6e8;
 }
+
+.active {
+    color: green;
+}

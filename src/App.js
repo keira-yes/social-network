@@ -16,6 +16,9 @@ function App() {
                         <Routes>
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/messages" element={<Messages />} />
+                            {/*<Route path="/messages" element={<News />} />*/}
+                            {/*<Route path="/messages" element={<Music />} />*/}
+                            {/*<Route path="/messages" element={<Settings />} />*/}
                         </Routes>
                     </main>
                 </div>
