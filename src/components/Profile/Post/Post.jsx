@@ -1,10 +1,10 @@
 import classes from './Post.module.css';
 
-export const Post = () => {
+export const Post = (props) => {
     return (
         <article className={classes.post}>
             <h3>Post</h3>
-            <p>Lorem ipsum</p>
+            <p>{props.message}</p>
         </article>
     )
 }
