@@ -6,19 +6,19 @@ export const Sidebar = () => {
             <nav className="nav">
                 <ul className="nav__list">
                     <li className="nav__item">
-                        <a href="#" className="nav__link">Profile</a>
+                        <a href="/profile" className="nav__link">Profile</a>
                     </li>
                     <li className="nav__item">
-                        <a href="#" className="nav__link">Messages</a>
+                        <a href="/messages" className="nav__link">Messages</a>
                     </li>
                     <li className="nav__item">
-                        <a href="#" className="nav__link">News</a>
+                        <a href="/news" className="nav__link">News</a>
                     </li>
                     <li className="nav__item">
-                        <a href="#" className="nav__link">Music</a>
+                        <a href="/music" className="nav__link">Music</a>
                     </li>
                     <li className="nav__item">
-                        <a href="#" className="nav__link">Settings</a>
+                        <a href="/settings" className="nav__link">Settings</a>
                     </li>
                 </ul>
             </nav>
