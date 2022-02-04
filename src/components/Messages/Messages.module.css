@@ -2,14 +2,3 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
-
-.dialog {
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-.active a {
-    color: green;
-    font-weight: 600;
-    text-decoration: underline;
-}

@@ -1,38 +1,24 @@
 import classes from './Messages.module.css';
-import {NavLink} from "react-router-dom";
+import { MessagesBlock } from './MessagesBlock/MessagesBlock';
+import { Message } from './Message/Message';
 
 export const Messages = () => {
     return (
         <div>
             <h1>Messages</h1>
             <div className={classes.columns}>
-                <div className="dialogs">
-                    <div className={`${classes.dialog} ${classes.active}`}>
-                        <NavLink to="/messages/1">Name 1</NavLink>
-                    </div>
-                    <div className={classes.dialog}>
-                        <NavLink to="/messages/2">Name 2</NavLink>
-                    </div>
-                    <div className={classes.dialog}>
-                        <NavLink to="/messages/3">Name 3</NavLink>
-                    </div>
-                    <div className={classes.dialog}>
-                        <NavLink to="/messages/4">Name 4</NavLink>
-                    </div>
-                    <div className={classes.dialog}>
-                        <NavLink to="/messages/5">Name 5</NavLink>
-                    </div>
-                    <div className={classes.dialog}>
-                        <NavLink to="/messages/6">Name 6</NavLink>
-                    </div>
-                    <div className={classes.dialog}>
-                        <NavLink to="/messages/7">Name 7</NavLink>
-                    </div>
+                <div className="blocks">
+                    <MessagesBlock id="1" name="Name 1" />
+                    <MessagesBlock id="2" name="Name 2" />
+                    <MessagesBlock id="3" name="Name 3" />
+                    <MessagesBlock id="4" name="Name 4" />
+                    <MessagesBlock id="5" name="Name 5" />
+                    <MessagesBlock id="5" name="Name 6" />
                 </div>
-                <div className="messages">
-                    <div className="message">Hi</div>
-                    <div className="message">How are you doing</div>
-                    <div className="message">Miss you</div>
+                <div className="list">
+                    <Message text="Hi" />
+                    <Message text="How are you doing" />
+                    <Message text="Miss you" />
                 </div>
             </div>
         </div>
