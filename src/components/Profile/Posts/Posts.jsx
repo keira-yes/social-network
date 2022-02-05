@@ -1,7 +1,7 @@
 import{ Post } from "../Post/Post";
 import classes from './Posts.module.css';
 
-const postsData = [
+const posts = [
     {id: 1, message: "Hello World!", likes: 5},
     {id: 2, message: "My first post...", likes: 12}
 ]
@@ -9,8 +9,7 @@ const postsData = [
 export const Posts = () => {
     return (
         <div className={classes.posts}>
-            <Post message="Hello World!" likes="5" />
-            <Post message="My first post..." likes="12" />
+            {posts.map(item =>  <Post message={item.message} likes={item.likes} />)}
         </div>
     )
 }
