@@ -2,6 +2,21 @@ import classes from './Messages.module.css';
 import { MessagesBlock } from './MessagesBlock/MessagesBlock';
 import { Message } from './Message/Message';
 
+const dialogsData = [
+    {id: 1, name: "Name 1"},
+    {id: 2, name: "Name 1"},
+    {id: 3, name: "Name 1"},
+    {id: 4, name: "Name 1"},
+    {id: 5, name: "Name 1"},
+    {id: 6, name: "Name 1"}
+]
+
+const messagesData = [
+    {id: 1, message: "Hi"},
+    {id: 2, message: "How are you doing"},
+    {id: 3, message: "Miss you"}
+]
+
 export const Messages = () => {
     return (
         <div>
