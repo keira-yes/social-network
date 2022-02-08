@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { state } from './redux/state';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -26,7 +27,7 @@ const messages = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App posts={posts} dialogs={dialogs} messages={messages} />
+    <App state={state} />
   </React.StrictMode>,
   document.getElementById('root')
 );

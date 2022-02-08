@@ -7,6 +7,7 @@ export const Posts = ({ posts }) => {
 
     const addPost = () => {
         const postContent = newPostElem.current.value;
+        console.log(postContent);
     }
 
     return (
@@ -16,7 +17,7 @@ export const Posts = ({ posts }) => {
                 <button onClick={addPost}>Send</button>
             </div>
             <div className={classes.posts}>
-                {posts.map(item =>  <Post message={item.message} likes={item.likes} />)}
+                {posts.map(item =>  <Post key={item.id} message={item.message} likes={item.likes} />)}
             </div>
         </div>
     )
