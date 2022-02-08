@@ -1,3 +1,5 @@
+import { rerender } from "../rerender";
+
 export const state = {
     profilePage: {
         posts: [
@@ -20,4 +22,18 @@ export const state = {
             {id: 3, message: "Miss you"}
         ]
     }
+}
+
+export const addPost = (post) => {
+    const posts = state.profilePage.posts;
+    const id = posts.length + 1;
+
+    const newPost = {
+        id,
+        message: post,
+        likes: 0
+    }
+
+    posts.push(newPost);
+    rerender(state);
 }
