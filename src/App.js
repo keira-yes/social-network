@@ -5,7 +5,7 @@ import { Profile } from "./components/Profile/Profile";
 import { Messages } from './components/Messages/Messages';
 import './App.css';
 
-function App({ state, addPost }) {
+function App({ state, addPost, updateNewPostText }) {
     return (
         <BrowserRouter>
             <div className="app">
@@ -14,8 +14,24 @@ function App({ state, addPost }) {
                     <Sidebar />
                     <main className="main">
                         <Routes>
-                            <Route path="/profile" element={<Profile posts={state.profilePage.posts} addPost={addPost} />} />
-                            <Route path="/messages/*" element={<Messages dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages} />} />
+                            <Route
+                                path="/profile"
+                                element={
+                                    <Profile
+                                        posts={state.profilePage.posts}
+                                        addPost={addPost}
+                                        newPostText={state.profilePage.newPostText}
+                                        updateNewPostText={updateNewPostText}
+                                    />}
+                            />
+                            <Route
+                                path="/messages/*"
+                                element={
+                                    <Messages
+                                        dialogs={state.dialogsPage.dialogs}
+                                        messages={state.dialogsPage.messages}
+                                    />}
+                            />
                             {/*<Route path="/messages" element={<News />} />*/}
                             {/*<Route path="/messages" element={<Music />} />*/}
                             {/*<Route path="/messages" element={<Settings />} />*/}

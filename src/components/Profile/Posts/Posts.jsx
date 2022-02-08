@@ -2,19 +2,22 @@ import React from 'react';
 import{ Post } from "../Post/Post";
 import classes from './Posts.module.css';
 
-export const Posts = ({ posts, addPost }) => {
+export const Posts = ({ posts, addPost, newPostText, updateNewPostText }) => {
     const newPostElem = React.createRef();
 
     const addNewPost = () => {
+        addPost();
+    }
+
+    const handleTextarea = () => {
         let postContent = newPostElem.current.value;
-        addPost(postContent);
-        newPostElem.current.value = '';
+        updateNewPostText(postContent)
     }
 
     return (
         <div>
             <div className="form">
-                <textarea ref={newPostElem} name="post" id="post" cols="30" rows="5"></textarea>
+                <textarea ref={newPostElem} value={newPostText} onChange={handleTextarea} />
                 <button onClick={addNewPost}>Send</button>
             </div>
             <div className={classes.posts}>

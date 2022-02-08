@@ -5,7 +5,8 @@ export const state = {
         posts: [
             {id: 1, message: "Hello World!", likes: 5},
             {id: 2, message: "My first post...", likes: 12}
-        ]
+        ],
+        newPostText: 'Enter post'
     },
     dialogsPage: {
         dialogs: [
@@ -24,16 +25,22 @@ export const state = {
     }
 }
 
-export const addPost = (post) => {
+export const addPost = () => {
     const posts = state.profilePage.posts;
     const id = posts.length + 1;
 
     const newPost = {
         id,
-        message: post,
+        message: state.profilePage.newPostText,
         likes: 0
     }
 
+    state.profilePage.newPostText = '';
     posts.push(newPost);
+    rerender(state);
+}
+
+export const updateNewPostText = (text) => {
+    state.profilePage.newPostText = text;
     rerender(state);
 }
