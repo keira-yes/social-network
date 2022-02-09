@@ -1,5 +1,3 @@
-import { rerender } from "../rerender";
-
 export const state = {
     profilePage: {
         posts: [
@@ -25,6 +23,12 @@ export const state = {
     }
 }
 
+let rerender;
+
+export const subscribe = observer => {
+    rerender = observer;
+}
+
 export const addPost = () => {
     const posts = state.profilePage.posts;
     const id = posts.length + 1;
@@ -37,10 +41,10 @@ export const addPost = () => {
 
     state.profilePage.newPostText = '';
     posts.push(newPost);
-    rerender(state);
+    rerender();
 }
 
 export const updateNewPostText = (text) => {
     state.profilePage.newPostText = text;
-    rerender(state);
+    rerender();
 }
