@@ -1,14 +1,21 @@
 import React from 'react';
+import {
+    addMessageActionCreator,
+    updateNewMessageTextActionCreator
+} from "../../redux/state";
 import classes from './Messages.module.css';
 import { MessagesBlock } from './MessagesBlock/MessagesBlock';
 import { Message } from './Message/Message';
 
-export const Messages = ({ dialogs, messages }) => {
-    const newMessage = React.createRef();
+export const Messages = ({ dialogs, messages, newMessageText, dispatch }) => {
 
     const addMessage = () => {
-        const messageContent = newMessage.current.value;
-        console.log(messageContent);
+        dispatch(addMessageActionCreator());
+    }
+
+    const handleTextarea = (e) => {
+        let messageContent = e.target.value;
+        dispatch(updateNewMessageTextActionCreator(messageContent));
     }
 
     return (
@@ -21,7 +28,7 @@ export const Messages = ({ dialogs, messages }) => {
                 <div className="list">
                     {messages.map(item => <Message key={item.id} text={item.message} />)}
                     <div className="form">
-                        <textarea ref={newMessage} name="message" id="message" cols="30" rows="5"></textarea>
+                        <textarea value={newMessageText} onChange={handleTextarea} />
                         <button onClick={addMessage}>Send</button>
                     </div>
                 </div>

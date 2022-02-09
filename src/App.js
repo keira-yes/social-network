@@ -30,6 +30,8 @@ function App({ state, dispatch }) {
                                     <Messages
                                         dialogs={state.dialogsPage.dialogs}
                                         messages={state.dialogsPage.messages}
+                                        newMessageText={state.dialogsPage.newMessageText}
+                                        dispatch={dispatch}
                                     />}
                             />
                             {/*<Route path="/messages" element={<News />} />*/}
