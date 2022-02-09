@@ -6,6 +6,7 @@ import { Messages } from './components/Messages/Messages';
 import './App.css';
 
 function App({ state, addPost, updateNewPostText }) {
+
     return (
         <BrowserRouter>
             <div className="app">
