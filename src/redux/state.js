@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD_POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+
 const store = {
     _state: {
         profilePage: {
@@ -34,7 +37,7 @@ const store = {
     },
     dispatch(action) {
 
-        if (action.type === 'ADD_POST') {
+        if (action.type === ADD_POST) {
             const posts = this._state.profilePage.posts;
             const id = posts.length + 1;
 
@@ -47,11 +50,19 @@ const store = {
             posts.push(newPost);
             this._state.profilePage.newPostText = '';
             this._callSubscribe(this._state);
-        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.payload;
             this._callSubscribe(this._state);
         }
     }
+}
+
+export const addPostActionCreator = () => {
+    return { type: ADD_POST };
+}
+
+export const updateNewPostTextActionCreator = (payload) => {
+    return { type: UPDATE_NEW_POST_TEXT, payload }
 }
 
 export default store;

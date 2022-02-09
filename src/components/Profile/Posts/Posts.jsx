@@ -1,4 +1,5 @@
 import React from 'react';
+import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/state";
 import{ Post } from "../Post/Post";
 import classes from './Posts.module.css';
 
@@ -6,12 +7,12 @@ export const Posts = ({ posts, newPostText, dispatch }) => {
     const newPostElem = React.createRef();
 
     const addNewPost = () => {
-        dispatch({ type: 'ADD_POST' });
+        dispatch(addPostActionCreator());
     }
 
     const handleTextarea = () => {
         let postContent = newPostElem.current.value;
-        dispatch({ type: 'UPDATE_NEW_POST_TEXT', payload: postContent });
+        dispatch(updateNewPostTextActionCreator(postContent));
     }
 
     return (
