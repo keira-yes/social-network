@@ -5,7 +5,7 @@ import { Profile } from "./components/Profile/Profile";
 import { Messages } from './components/Messages/Messages';
 import './App.css';
 
-function App({ state, addPost, updateNewPostText }) {
+function App({ state, dispatch }) {
 
     return (
         <BrowserRouter>
@@ -20,9 +20,8 @@ function App({ state, addPost, updateNewPostText }) {
                                 element={
                                     <Profile
                                         posts={state.profilePage.posts}
-                                        addPost={addPost}
                                         newPostText={state.profilePage.newPostText}
-                                        updateNewPostText={updateNewPostText}
+                                        dispatch={dispatch}
                                     />}
                             />
                             <Route

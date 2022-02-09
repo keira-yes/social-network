@@ -2,16 +2,16 @@ import React from 'react';
 import{ Post } from "../Post/Post";
 import classes from './Posts.module.css';
 
-export const Posts = ({ posts, addPost, newPostText, updateNewPostText }) => {
+export const Posts = ({ posts, newPostText, dispatch }) => {
     const newPostElem = React.createRef();
 
     const addNewPost = () => {
-        addPost();
+        dispatch({ type: 'ADD_POST' });
     }
 
     const handleTextarea = () => {
         let postContent = newPostElem.current.value;
-        updateNewPostText(postContent)
+        dispatch({ type: 'UPDATE_NEW_POST_TEXT', payload: postContent });
     }
 
     return (

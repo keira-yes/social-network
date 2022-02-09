@@ -29,26 +29,28 @@ const store = {
     _callSubscribe() {
         console.log('rerender');
     },
-    addPost() {
-        const posts = this._state.profilePage.posts;
-        const id = posts.length + 1;
-
-        const newPost = {
-            id,
-            message: this._state.profilePage.newPostText,
-            likes: 0
-        }
-
-        posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscribe(this._state);
-    },
-    updateNewPostText(text) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscribe(this._state);
-    },
     subscribe(observer) {
         this._callSubscribe = observer;
+    },
+    dispatch(action) {
+
+        if (action.type === 'ADD_POST') {
+            const posts = this._state.profilePage.posts;
+            const id = posts.length + 1;
+
+            const newPost = {
+                id,
+                message: this._state.profilePage.newPostText,
+                likes: 0
+            }
+
+            posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscribe(this._state);
+        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+            this._state.profilePage.newPostText = action.payload;
+            this._callSubscribe(this._state);
+        }
     }
 }
 
