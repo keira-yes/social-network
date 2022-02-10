@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-    addMessageActionCreator,
-    updateNewMessageTextActionCreator
-} from "../../redux/state";
 import classes from './Messages.module.css';
 import { MessagesBlock } from './MessagesBlock/MessagesBlock';
 import { Message } from './Message/Message';
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/reducers/dialogsReducer";
 
 export const Messages = ({ dialogs, messages, newMessageText, dispatch }) => {
 

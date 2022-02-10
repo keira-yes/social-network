@@ -1,3 +1,6 @@
+import { postsReducer } from "./reducers/postsReducer";
+import { dialogsReducer } from "./reducers/dialogsReducer";
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
@@ -40,54 +43,11 @@ const store = {
     },
     dispatch(action) {
 
-        if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.payload;
-            this._callSubscribe(this._state);
+        this._state.profilePage = postsReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
 
-        } else if (action.type === ADD_POST) {
-            const posts = this._state.profilePage.posts;
-            const id = posts.length + 1;
-            const newPost = {
-                id,
-                message: this._state.profilePage.newPostText,
-                likes: 0
-            }
-            posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscribe(this._state);
-
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.payload;
-            this._callSubscribe(this._state);
-
-        } else if (action.type === ADD_MESSAGE) {
-            const messages = this._state.dialogsPage.messages;
-            const id = messages.length + 1;
-            const newMessage = {
-                id,
-                message: this._state.dialogsPage.newMessageText,
-            }
-            messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = '';
-            this._callSubscribe(this._state);
-        }
+        this._callSubscribe(this._state);
     }
-}
-
-export const updateNewPostTextActionCreator = (payload) => {
-    return { type: UPDATE_NEW_POST_TEXT, payload }
-}
-
-export const addPostActionCreator = () => {
-    return { type: ADD_POST };
-}
-
-export const updateNewMessageTextActionCreator = (payload) => {
-    return { type: UPDATE_NEW_MESSAGE_TEXT, payload }
-}
-
-export const addMessageActionCreator = () => {
-    return { type: ADD_MESSAGE };
 }
 
 export default store;
