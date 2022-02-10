@@ -1,12 +1,7 @@
 import { postsReducer } from "./reducers/postsReducer";
 import { dialogsReducer } from "./reducers/dialogsReducer";
 
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
-const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
-const ADD_MESSAGE = 'ADD_MESSAGE';
-
-const store = {
+const customStore = {
     _state: {
         profilePage: {
             posts: [
@@ -50,4 +45,4 @@ const store = {
     }
 }
 
-export default store;
+export default customStore;

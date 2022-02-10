@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store from './redux/state';
+import customStore from './redux/custom-store';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -9,8 +9,8 @@ const rerender = () => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                state={store.getState()}
-                dispatch={store.dispatch.bind(store)}
+                state={customStore.getState()}
+                dispatch={customStore.dispatch.bind(customStore)}
             />
         </React.StrictMode>,
         document.getElementById('root')
@@ -19,7 +19,7 @@ const rerender = () => {
 
 rerender();
 
-store.subscribe(rerender);
+customStore.subscribe(rerender);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
