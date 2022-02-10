@@ -4,6 +4,8 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Profile } from "./components/Profile/Profile";
 import { Messages } from './components/Messages/Messages';
 import './App.css';
+import {postsReducer} from "./redux/reducers/postsReducer";
+import {dialogsReducer} from "./redux/reducers/dialogsReducer";
 
 function App({ state, dispatch }) {
 
@@ -19,8 +21,8 @@ function App({ state, dispatch }) {
                                 path="/profile"
                                 element={
                                     <Profile
-                                        posts={state.profilePage.posts}
-                                        newPostText={state.profilePage.newPostText}
+                                        posts={state.postsReducer.posts}
+                                        newPostText={state.postsReducer.newPostText}
                                         dispatch={dispatch}
                                     />}
                             />
@@ -28,9 +30,9 @@ function App({ state, dispatch }) {
                                 path="/messages/*"
                                 element={
                                     <Messages
-                                        dialogs={state.dialogsPage.dialogs}
-                                        messages={state.dialogsPage.messages}
-                                        newMessageText={state.dialogsPage.newMessageText}
+                                        dialogs={state.dialogsReducer.dialogs}
+                                        messages={state.dialogsReducer.messages}
+                                        newMessageText={state.dialogsReducer.newMessageText}
                                         dispatch={dispatch}
                                     />}
                             />
