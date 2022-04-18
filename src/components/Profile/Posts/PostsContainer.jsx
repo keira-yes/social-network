@@ -2,17 +2,18 @@ import React from 'react';
 import { Posts } from "./Posts";
 import { addPostCreator, updatePostCreator } from "../../../redux/reducers/postsReducer";
 
-export const PostsContainer = ({ posts, newPostText, dispatch }) => {
+export const PostsContainer = ({ store }) => {
+    const state = store.getState().postsReducer;
 
     const addPost = () => {
-        dispatch(addPostCreator());
+        store.dispatch(addPostCreator());
     }
 
     const updatePost = (text) => {
-        dispatch(updatePostCreator(text));
+        store.dispatch(updatePostCreator(text));
     }
 
     return (
-        <Posts posts={posts} newPostText={newPostText} addPost={addPost} updatePost={updatePost} />
+        <Posts posts={state.posts} newPostText={state.newPostText} addPost={addPost} updatePost={updatePost} />
     )
 }

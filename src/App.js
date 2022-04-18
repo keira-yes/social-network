@@ -5,7 +5,7 @@ import { Profile } from "./components/Profile/Profile";
 import { Messages } from './components/Messages/Messages';
 import './App.css';
 
-function App({ state, dispatch }) {
+function App({ store }) {
 
     return (
         <BrowserRouter>
@@ -19,19 +19,21 @@ function App({ state, dispatch }) {
                                 path="/profile"
                                 element={
                                     <Profile
-                                        posts={state.postsReducer.posts}
-                                        newPostText={state.postsReducer.newPostText}
-                                        dispatch={dispatch}
+                                        // posts={state.postsReducer.posts}
+                                        // newPostText={state.postsReducer.newPostText}
+                                        // dispatch={dispatch}
+
+                                        store={store}
                                     />}
                             />
                             <Route
                                 path="/messages/*"
                                 element={
                                     <Messages
-                                        dialogs={state.dialogsReducer.dialogs}
-                                        messages={state.dialogsReducer.messages}
-                                        newMessageText={state.dialogsReducer.newMessageText}
-                                        dispatch={dispatch}
+                                        // dialogs={state.dialogsReducer.dialogs}
+                                        // messages={state.dialogsReducer.messages}
+                                        // newMessageText={state.dialogsReducer.newMessageText}
+                                        // dispatch={dispatch}
                                     />}
                             />
                         </Routes>
