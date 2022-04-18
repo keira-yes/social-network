@@ -1,28 +1,27 @@
 import React from 'react';
-import{ Post } from "../Post/Post";
+import { Post } from '../Post/Post';
 import classes from './Posts.module.css';
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/reducers/postsReducer";
 
-export const Posts = ({ posts, newPostText, dispatch }) => {
-    const newPostElem = React.createRef();
+export const Posts = ({ posts, newPostText, addPost, updatePost }) => {
+    const newPost = React.createRef();
 
-    const addNewPost = () => {
-        dispatch(addPostActionCreator());
+    const onAddPost = () => {
+        addPost();
     }
 
-    const handleTextarea = () => {
-        let postContent = newPostElem.current.value;
-        dispatch(updateNewPostTextActionCreator(postContent));
+    const onUpdatePost = () => {
+        let postContent = newPost.current.value;
+        updatePost(postContent);
     }
 
     return (
         <div>
             <div className="form">
-                <textarea ref={newPostElem} value={newPostText} onChange={handleTextarea} />
-                <button onClick={addNewPost}>Send</button>
+                <textarea ref={newPost} value={newPostText} onChange={onUpdatePost} />
+                <button onClick={onAddPost}>Send</button>
             </div>
             <div className={classes.posts}>
-                {posts.map(item =>  <Post key={item.id} message={item.message} likes={item.likes} />)}
+                {posts.map(item => <Post key={item.id} message={item.message} likes={item.likes} />)}
             </div>
         </div>
     )

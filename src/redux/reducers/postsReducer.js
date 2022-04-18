@@ -1,4 +1,4 @@
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const UPDATE_POST = 'UPDATE_POST';
 const ADD_POST = 'ADD_POST';
 
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
 export const postsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT:
+        case UPDATE_POST:
             state.newPostText = action.payload;
             return state;
         case ADD_POST:
@@ -31,10 +31,10 @@ export const postsReducer = (state = initialState, action) => {
     }
 }
 
-export const updateNewPostTextActionCreator = (payload) => {
-    return { type: UPDATE_NEW_POST_TEXT, payload }
+export const updatePostCreator = (payload) => {
+    return { type: UPDATE_POST, payload }
 }
 
-export const addPostActionCreator = () => {
+export const addPostCreator = () => {
     return { type: ADD_POST };
 }

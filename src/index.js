@@ -20,7 +20,7 @@ const rerender = () => {
 rerender();
 
 store.subscribe(() => {
-    rerender(store.getState());
+    rerender();
 });
 
 // If you want to start measuring performance in your app, pass a function

@@ -4,8 +4,6 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Profile } from "./components/Profile/Profile";
 import { Messages } from './components/Messages/Messages';
 import './App.css';
-import {postsReducer} from "./redux/reducers/postsReducer";
-import {dialogsReducer} from "./redux/reducers/dialogsReducer";
 
 function App({ state, dispatch }) {
 
@@ -36,9 +34,6 @@ function App({ state, dispatch }) {
                                         dispatch={dispatch}
                                     />}
                             />
-                            {/*<Route path="/messages" element={<News />} />*/}
-                            {/*<Route path="/messages" element={<Music />} />*/}
-                            {/*<Route path="/messages" element={<Settings />} />*/}
                         </Routes>
                     </main>
                 </div>
