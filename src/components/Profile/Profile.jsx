@@ -7,12 +7,7 @@ export const Profile = ({ store }) => {
         <div className={classes.profile}>
             <h1>Profile</h1>
             <ProfileInfo />
-            <PostsContainer
-                // posts={posts}
-                // newPostText={newPostText}
-                // dispatch={dispatch}
-                store={store}
-            />
+            <PostsContainer store={store} />
         </div>
     )
 }

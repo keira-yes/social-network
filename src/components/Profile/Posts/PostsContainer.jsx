@@ -14,6 +14,11 @@ export const PostsContainer = ({ store }) => {
     }
 
     return (
-        <Posts posts={state.posts} newPostText={state.newPostText} addPost={addPost} updatePost={updatePost} />
+        <Posts
+            posts={state.posts}
+            newPostText={state.newPostText}
+            addPost={addPost}
+            updatePost={updatePost}
+        />
     )
 }

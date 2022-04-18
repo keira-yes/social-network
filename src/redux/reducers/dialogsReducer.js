@@ -1,4 +1,4 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 const ADD_MESSAGE = 'ADD_MESSAGE';
 
 const initialState = {
@@ -10,18 +10,18 @@ const initialState = {
         {id: 5, name: "Name 5"},
         {id: 6, name: "Name 6"}
     ],
-        messages: [
+    messages: [
         {id: 1, message: "Hi world"},
         {id: 2, message: "How are you doing"},
         {id: 3, message: "Miss you"}
     ],
-        newMessageText: ''
+    newMessageText: ''
 }
 
 export const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
+        case UPDATE_MESSAGE:
             state.newMessageText = action.payload;
             return state;
         case ADD_MESSAGE:
@@ -39,10 +39,10 @@ export const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const updateNewMessageTextActionCreator = (payload) => {
-    return { type: UPDATE_NEW_MESSAGE_TEXT, payload }
+export const updateMessageCreator = (payload) => {
+    return { type: UPDATE_MESSAGE, payload }
 }
 
-export const addMessageActionCreator = () => {
+export const addMessageCreator = () => {
     return { type: ADD_MESSAGE };
 }

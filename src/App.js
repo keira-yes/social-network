@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Header } from "./components/Header/Header";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Profile } from "./components/Profile/Profile";
-import { Messages } from './components/Messages/Messages';
+import { MessagesContainer } from './components/Messages/MessagesContainer';
 import './App.css';
 
 function App({ store }) {
@@ -17,24 +17,11 @@ function App({ store }) {
                         <Routes>
                             <Route
                                 path="/profile"
-                                element={
-                                    <Profile
-                                        // posts={state.postsReducer.posts}
-                                        // newPostText={state.postsReducer.newPostText}
-                                        // dispatch={dispatch}
-
-                                        store={store}
-                                    />}
+                                element={<Profile store={store} />}
                             />
                             <Route
                                 path="/messages/*"
-                                element={
-                                    <Messages
-                                        // dialogs={state.dialogsReducer.dialogs}
-                                        // messages={state.dialogsReducer.messages}
-                                        // newMessageText={state.dialogsReducer.newMessageText}
-                                        // dispatch={dispatch}
-                                    />}
+                                element={<MessagesContainer store={store} />}
                             />
                         </Routes>
                     </main>

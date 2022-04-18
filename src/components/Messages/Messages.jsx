@@ -2,17 +2,16 @@ import React from 'react';
 import classes from './Messages.module.css';
 import { MessagesBlock } from './MessagesBlock/MessagesBlock';
 import { Message } from './Message/Message';
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/reducers/dialogsReducer";
 
-export const Messages = ({ dialogs, messages, newMessageText, dispatch }) => {
+export const Messages = ({ dialogs, messages, newMessageText, addMessage, updateMessage }) => {
 
-    const addMessage = () => {
-        dispatch(addMessageActionCreator());
+    const onAddMessage = () => {
+        addMessage();
     }
 
-    const handleTextarea = (e) => {
+    const onUpdateMessage = (e) => {
         let messageContent = e.target.value;
-        dispatch(updateNewMessageTextActionCreator(messageContent));
+        updateMessage(messageContent);
     }
 
     return (
@@ -25,8 +24,8 @@ export const Messages = ({ dialogs, messages, newMessageText, dispatch }) => {
                 <div className="list">
                     {messages.map(item => <Message key={item.id} text={item.message} />)}
                     <div className="form">
-                        <textarea value={newMessageText} onChange={handleTextarea} />
-                        <button onClick={addMessage}>Send</button>
+                        <textarea value={newMessageText} onChange={onUpdateMessage} />
+                        <button onClick={onAddMessage}>Send</button>
                     </div>
                 </div>
             </div>
