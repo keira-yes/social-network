@@ -1,5 +1,5 @@
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
-import { PostsContainer } from "./Posts/PostsContainer";
+import PostsContainer from "./Posts/PostsContainer";
 import classes from './Profile.module.css';
 
 export const Profile = ({ store }) => {

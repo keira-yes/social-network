@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Header } from "./components/Header/Header";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Profile } from "./components/Profile/Profile";
-import { MessagesContainer } from './components/Messages/MessagesContainer';
+import MessagesContainer from './components/Messages/MessagesContainer';
 import './App.css';
 
 function App({ store }) {
