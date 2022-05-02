@@ -17,6 +17,11 @@ export const Sidebar = () => {
                             className={({ isActive }) => isActive ? classes.active : ""}>Messages</NavLink>
                     </li>
                     <li className="nav__item">
+                        <NavLink
+                            to="/users"
+                            className={({ isActive }) => isActive ? classes.active : ""}>Users</NavLink>
+                    </li>
+                    <li className="nav__item">
                         <NavLink to="/news" className="nav__link">News</NavLink>
                     </li>
                     <li className="nav__item">
