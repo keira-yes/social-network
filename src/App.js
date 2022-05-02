@@ -2,8 +2,8 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Header } from "./components/Header/Header";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Profile } from "./components/Profile/Profile";
-import { Users } from "./components/Users/Users";
 import MessagesContainer from './components/Messages/MessagesContainer';
+import UsersContainer from "./components/Users/UsersContainer";
 import './App.css';
 
 function App({ store }) {
@@ -26,7 +26,7 @@ function App({ store }) {
                             />
                             <Route
                                 path="/users/*"
-                                element={<Users store={store} />}
+                                element={<UsersContainer store={store} />}
                             />
                         </Routes>
                     </main>
