@@ -3,7 +3,7 @@ import { MessagesBlock } from './MessagesBlock/MessagesBlock';
 import { Message } from './Message/Message';
 import classes from './Messages.module.css';
 
-export const Messages = ({ dialogsReducer, addMessage, updateMessage }) => {
+export const Messages = ({ dialogs, messages, newMessageText, addMessage, updateMessage }) => {
 
     const onAddMessage = () => {
         addMessage();
@@ -19,12 +19,12 @@ export const Messages = ({ dialogsReducer, addMessage, updateMessage }) => {
             <h1>Messages</h1>
             <div className={classes.columns}>
                 <div className="blocks">
-                    {dialogsReducer.dialogs.map(item => <MessagesBlock key={item.id} id={item.id} name={item.name} />)}
+                    {dialogs.map(item => <MessagesBlock key={item.id} id={item.id} name={item.name} />)}
                 </div>
                 <div className="list">
-                    {dialogsReducer.messages.map(item => <Message key={item.id} text={item.message} />)}
+                    {messages.map(item => <Message key={item.id} text={item.message} />)}
                     <div className="form">
-                        <textarea value={dialogsReducer.newMessageText} onChange={onUpdateMessage} />
+                        <textarea value={newMessageText} onChange={onUpdateMessage} />
                         <button onClick={onAddMessage}>Send</button>
                     </div>
                 </div>

@@ -4,7 +4,9 @@ import { addMessageCreator, updateMessageCreator } from "../../redux/reducers/di
 
 const mapStateToProps = (state) => {
     return {
-        dialogsReducer: state.dialogsReducer
+        dialogs: state.dialogsReducer.dialogs,
+        messages: state.dialogsReducer.messages,
+        newMessageText:state.dialogsReducer.newMessageText
     }
 }
 
