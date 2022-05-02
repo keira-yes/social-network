@@ -13,19 +13,21 @@ export const postsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case UPDATE_POST:
-            state.newPostText = action.payload;
-            return state;
+            return {
+                ...state,
+                newPostText: action.payload
+            }
         case ADD_POST:
-            const posts = state.posts;
-            const id = posts.length + 1;
             const newPost = {
-                id,
+                id: state.posts.length + 1,
                 message: state.newPostText,
                 likes: 0
             }
-            posts.push(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            }
         default:
             return state;
     }
