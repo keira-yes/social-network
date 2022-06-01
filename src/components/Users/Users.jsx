@@ -1,12 +1,12 @@
-export const Users = ({ users, getUsers, followUser, unfollowUser }) => {
+import axios from "axios";
+import avatar from "../../assets/images/avatar.png";
+
+export const Users = ({ users, getUsers, toggleFollowUserCreator, }) => {
 
     if (users.length === 0) {
-        getUsers([
-            {id: 1, avatar: "https://cdn-icons-png.flaticon.com/512/147/147142.png", firstName: "Irina", lastName: "K.", status: "I'm ready", location: {city: "Kiev", country: "Ukraine"}, followed: true},
-            {id: 2, avatar: "https://cdn-icons-png.flaticon.com/512/147/147142.png", firstName: "Ksenia", lastName: "K.", status: "I'm not ready", location: {city: "Oslo", country: "Norway"}, followed: false},
-            {id: 3, avatar: "https://cdn-icons-png.flaticon.com/512/147/147142.png", firstName: "Alex", lastName: "O.", status: "Sunshine", location: {city: "NY", country: "USA"}, followed: false},
-            {id: 4, avatar: "https://cdn-icons-png.flaticon.com/512/147/147142.png", firstName: "David", lastName: "H.", status: "Love like winter", location: {city: "London", country: "Great Britain"}, followed: false}
-        ]);
+        axios("https://social-network.samuraijs.com/api/1.0/users").then(({ data }) => {
+            getUsers(data.items);
+        });
     }
 
     return (
@@ -15,18 +15,17 @@ export const Users = ({ users, getUsers, followUser, unfollowUser }) => {
                 <article key={user.id}>
                     <div>
                         <figure>
-                            <img src={user.avatar} alt={user.firstName} />
+                            <img src={user.photos.small !==null ? user.photos.small : avatar} alt={user.name} />
                         </figure>
-                        {user.followed ?
-                            <button type="button" onClick={() => unfollowUser(user.id)}>Unfollow</button> :
-                            <button type="button" onClick={() => followUser(user.id)}>Follow</button>
-                        }
+                        <button type="button" onClick={() => toggleFollowUserCreator(user.id)}>
+                            {user.followed ? "Unfollow" : "Follow"}
+                        </button>
                     </div>
                     <div>
-                        <h3>{user.firstName} {user.lastName}</h3>
-                        <div>{user.location.country}</div>
+                        <h3>{user.name}</h3>
+                        <div>{"Country"}</div>
                         <strong>{user.status}</strong>
-                        <div>{user.location.city}</div>
+                        <div>{"City"}</div>
                     </div>
                 </article>
             ))}
