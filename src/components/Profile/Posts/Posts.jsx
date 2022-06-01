@@ -5,10 +5,6 @@ import classes from './Posts.module.css';
 export const Posts = ({ posts, newPostText, addPost, updatePost }) => {
     const newPost = React.createRef();
 
-    const onAddPost = () => {
-        addPost();
-    }
-
     const onUpdatePost = () => {
         let postContent = newPost.current.value;
         updatePost(postContent);
@@ -18,7 +14,7 @@ export const Posts = ({ posts, newPostText, addPost, updatePost }) => {
         <div>
             <div className="form">
                 <textarea ref={newPost} value={newPostText} onChange={onUpdatePost} />
-                <button onClick={onAddPost}>Send</button>
+                <button onClick={addPost}>Send</button>
             </div>
             <div className={classes.posts}>
                 {posts.map(item => <Post key={item.id} message={item.message} likes={item.likes} />)}

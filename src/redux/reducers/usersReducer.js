@@ -1,14 +1,9 @@
 const GET_USERS = 'GET_USERS';
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
+const FOLLOW_USER = 'FOLLOW_USER';
+const UNFOLLOW_USER = 'UNFOLLOW_USER';
 
 const initialState = {
-    users: [
-        {id: 1, firstName: "Irina", lastName: "K.", status: "I'm ready", location: {city: "Kiev", country: "Ukraine"}, followed: true},
-        {id: 2, firstName: "Ksenia", lastName: "K.", status: "I'm not ready", location: {city: "Oslo", country: "Norway"}, followed: false},
-        {id: 3, firstName: "Alex", lastName: "O.", status: "Sunshine", location: {city: "NY", country: "USA"}, followed: false},
-        {id: 4, firstName: "David", lastName: "H.", status: "Love like winter", location: {city: "London", country: "Great Britain"}, followed: false}
-    ]
+    users: []
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -16,9 +11,9 @@ export const usersReducer = (state = initialState, action) => {
         case GET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.payload ]
+                users: [...state.users, ...action.payload]
             }
-        case FOLLOW:
+        case FOLLOW_USER:
             return {
                 ...state,
                 users: state.users.map(user => {
@@ -28,7 +23,7 @@ export const usersReducer = (state = initialState, action) => {
                     return user;
                 })
             }
-        case UNFOLLOW:
+        case UNFOLLOW_USER:
             return {
                 ...state,
                 users: state.users.map(user => {
@@ -47,10 +42,10 @@ export const getUsersCreator = (payload) => {
     return { type: GET_USERS, payload };
 }
 
-export const followCreator = (payload) => {
-    return { type: FOLLOW, payload };
+export const followUserCreator = (payload) => {
+    return { type: FOLLOW_USER, payload };
 }
 
-export const unfollowCreator = (payload) => {
-    return { type: UNFOLLOW, payload };
+export const unfollowUserCreator = (payload) => {
+    return { type: UNFOLLOW_USER, payload };
 }

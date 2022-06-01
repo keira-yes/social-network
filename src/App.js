@@ -6,7 +6,7 @@ import MessagesContainer from './components/Messages/MessagesContainer';
 import UsersContainer from "./components/Users/UsersContainer";
 import './App.css';
 
-function App({ store }) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -18,15 +18,15 @@ function App({ store }) {
                         <Routes>
                             <Route
                                 path="/profile"
-                                element={<Profile store={store} />}
+                                element={<Profile />}
                             />
                             <Route
                                 path="/messages/*"
-                                element={<MessagesContainer store={store} />}
+                                element={<MessagesContainer />}
                             />
                             <Route
                                 path="/users/*"
-                                element={<UsersContainer store={store} />}
+                                element={<UsersContainer />}
                             />
                         </Routes>
                     </main>

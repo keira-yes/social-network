@@ -5,10 +5,6 @@ import classes from './Messages.module.css';
 
 export const Messages = ({ dialogs, messages, newMessageText, addMessage, updateMessage }) => {
 
-    const onAddMessage = () => {
-        addMessage();
-    }
-
     const onUpdateMessage = (e) => {
         let messageContent = e.target.value;
         updateMessage(messageContent);
@@ -25,7 +21,7 @@ export const Messages = ({ dialogs, messages, newMessageText, addMessage, update
                     {messages.map(item => <Message key={item.id} text={item.message} />)}
                     <div className="form">
                         <textarea value={newMessageText} onChange={onUpdateMessage} />
-                        <button onClick={onAddMessage}>Send</button>
+                        <button onClick={addMessage}>Send</button>
                     </div>
                 </div>
             </div>
