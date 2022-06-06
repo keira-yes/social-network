@@ -2,7 +2,10 @@ const GET_USERS = 'GET_USERS';
 const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
 
 const initialState = {
-    users: []
+    users: [],
+    usersTotal: 26,
+    usersPageLimit: 5,
+    usersCurrentPage: 1,
 }
 
 export const usersReducer = (state = initialState, action) => {

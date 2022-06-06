@@ -4,7 +4,10 @@ import { getUsersCreator, toggleFollowUserCreator } from "../../redux/reducers/u
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersReducer.users
+        users: state.usersReducer.users,
+        usersTotal: state.usersReducer.usersTotal,
+        usersPageLimit: state.usersReducer.usersPageLimit,
+        usersCurrentPage: state.usersReducer.usersCurrentPage,
     }
 }
 
