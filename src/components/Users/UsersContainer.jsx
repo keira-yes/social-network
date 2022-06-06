@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Users } from "./Users";
-import { getUsersCreator, toggleFollowUserCreator } from "../../redux/reducers/usersReducer";
+import { getUsersCreator, toggleFollowUserCreator, setCurrentPageCreator } from "../../redux/reducers/usersReducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         toggleFollowUserCreator: (userID) => {
             dispatch(toggleFollowUserCreator(userID))
+        },
+        setCurrentPageCreator: (page) => {
+            dispatch(setCurrentPageCreator(page))
         }
     }
 }

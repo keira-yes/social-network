@@ -1,5 +1,6 @@
 const GET_USERS = 'GET_USERS';
 const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 const initialState = {
     users: [],
@@ -25,6 +26,11 @@ export const usersReducer = (state = initialState, action) => {
                     return user;
                 })
             }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                usersCurrentPage: action.payload
+            }
         default:
             return state;
     }
@@ -36,4 +42,8 @@ export const getUsersCreator = (payload) => {
 
 export const toggleFollowUserCreator = (payload) => {
     return { type: TOGGLE_FOLLOW_USER, payload };
+}
+
+export const setCurrentPageCreator = (payload) => {
+    return { type: SET_CURRENT_PAGE, payload };
 }

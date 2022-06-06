@@ -12,7 +12,7 @@ export class Users extends React.Component {
     }
 
     render() {
-        const { users, usersTotal, usersPageLimit, usersCurrentPage, toggleFollowUserCreator } = this.props;
+        const { users, usersTotal, usersPageLimit, usersCurrentPage, toggleFollowUserCreator, setCurrentPageCreator } = this.props;
 
         const pages = [];
         const pagesCount = Math.ceil(usersTotal / usersPageLimit);
@@ -42,7 +42,14 @@ export class Users extends React.Component {
                 ))}
                 <div>
                     {pages.map(page => (
-                        <button type="button" key={page} className={page === usersCurrentPage ? classes.active : ''}>{page}</button>
+                        <button
+                            type="button"
+                            key={page}
+                            className={page === usersCurrentPage ? classes.active : ''}
+                            onClick={() => setCurrentPageCreator(page)}
+                        >
+                            {page}
+                        </button>
                     ))}
                 </div>
             </div>
