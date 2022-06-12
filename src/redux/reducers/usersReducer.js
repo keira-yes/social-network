@@ -2,12 +2,14 @@ const GET_USERS = 'GET_USERS';
 const SET_USERS_TOTAL = 'SET_USERS_TOTAL';
 const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_IS_LOADING = 'SET_IS_LOADING';
 
 const initialState = {
     users: [],
     usersTotal: 0,
     usersPageLimit: 10,
     usersCurrentPage: 1,
+    isLoading: false
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -37,6 +39,11 @@ export const usersReducer = (state = initialState, action) => {
                 ...state,
                 usersCurrentPage: action.payload
             }
+        case SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload
+            }
         default:
             return state;
     }
@@ -56,4 +63,8 @@ export const toggleFollowUserCreator = (payload) => {
 
 export const setCurrentPageCreator = (payload) => {
     return { type: SET_CURRENT_PAGE, payload };
+}
+
+export const setIsLoadingCreator = (payload) => {
+    return { type: SET_IS_LOADING, payload };
 }
