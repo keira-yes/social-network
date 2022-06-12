@@ -1,8 +1,13 @@
-export const ProfileInfo = () => {
+import { Preloader } from "../../Preloader/Preloader";
+
+export const ProfileInfo = ({ profile }) => {
+    if (!profile) {
+        return <Preloader />
+    }
     return (
         <div>
-           Avatar
-            <h2>My Name</h2>
+            <img src={profile.photos.large} alt=""/>
+            <h2>{profile.fullName}</h2>
         </div>
     )
 }

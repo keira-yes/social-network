@@ -1,10 +1,10 @@
 import { combineReducers, createStore } from "redux";
 import { dialogsReducer } from "./reducers/dialogsReducer";
-import { postsReducer } from "./reducers/postsReducer";
+import { profileReducer } from "./reducers/profileReducer";
 import { usersReducer } from "./reducers/usersReducer";
 
 const reducers = combineReducers({
-    postsReducer,
+    profileReducer,
     dialogsReducer,
     usersReducer
 })

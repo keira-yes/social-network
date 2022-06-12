@@ -1,4 +1,4 @@
-import { postsReducer } from "./reducers/postsReducer";
+import { profileReducer } from "./reducers/profileReducer";
 import { dialogsReducer } from "./reducers/dialogsReducer";
 
 const customStore = {
@@ -38,7 +38,7 @@ const customStore = {
     },
     dispatch(action) {
 
-        this._state.profilePage = postsReducer(this._state.profilePage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
 
         this._callSubscribe(this._state);

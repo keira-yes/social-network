@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 import classes from './Users.module.css';
 import avatar from "../../assets/images/avatar.png";
 
@@ -13,9 +14,9 @@ export const Users = ({ usersTotal, usersPageLimit, users, toggleFollowUser, use
             {users.map(user => (
                 <article key={user.id}>
                     <div>
-                        <figure>
+                        <NavLink to={'/profile/' + user.id}>
                             <img src={user.photos.small !== null ? user.photos.small : avatar} alt={user.name} />
-                        </figure>
+                        </NavLink>
                         <button type="button" onClick={() => toggleFollowUser(user.id)}>
                             {user.followed ? "Unfollow" : "Follow"}
                         </button>
