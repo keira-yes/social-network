@@ -1,4 +1,4 @@
-const GET_USERS = 'GET_USERS';
+const SET_USERS = 'SET_USERS';
 const SET_USERS_TOTAL = 'SET_USERS_TOTAL';
 const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -14,7 +14,7 @@ const initialState = {
 
 export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_USERS:
+        case SET_USERS:
             return {
                 ...state,
                 users: action.payload
@@ -49,22 +49,22 @@ export const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const getUsersCreator = (payload) => {
-    return { type: GET_USERS, payload };
+export const setUsers = (payload) => {
+    return { type: SET_USERS, payload };
 }
 
-export const setUsersTotalCreator = (payload) => {
+export const setUsersTotal = (payload) => {
     return { type: SET_USERS_TOTAL, payload };
 }
 
-export const toggleFollowUserCreator = (payload) => {
+export const toggleFollowUser = (payload) => {
     return { type: TOGGLE_FOLLOW_USER, payload };
 }
 
-export const setCurrentPageCreator = (payload) => {
+export const setCurrentPage = (payload) => {
     return { type: SET_CURRENT_PAGE, payload };
 }
 
-export const setIsLoadingCreator = (payload) => {
+export const setIsLoading = (payload) => {
     return { type: SET_IS_LOADING, payload };
 }

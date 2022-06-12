@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import { Users } from "./Users";
 import { Preloader } from "../Preloader/Preloader";
 import {
-    getUsersCreator,
-    setUsersTotalCreator,
-    toggleFollowUserCreator,
-    setCurrentPageCreator,
-    setIsLoadingCreator
+    setUsers,
+    setUsersTotal,
+    toggleFollowUser,
+    setCurrentPage,
+    setIsLoading
 } from "../../redux/reducers/usersReducer";
 
 class UsersContainer extends React.Component {
@@ -58,24 +58,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setUsers: (users) => {
-            dispatch(getUsersCreator(users))
-        },
-        setUsersTotal: (total) => {
-            dispatch(setUsersTotalCreator(total))
-        },
-        toggleFollowUser: (userID) => {
-            dispatch(toggleFollowUserCreator(userID))
-        },
-        setCurrentPage: (page) => {
-            dispatch(setCurrentPageCreator(page))
-        },
-        setIsLoading: (isLoading) => {
-            dispatch(setIsLoadingCreator(isLoading))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps,
+    { setUsers, setUsersTotal, toggleFollowUser, setCurrentPage, setIsLoading })(UsersContainer);
