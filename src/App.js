@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import { Header } from "./components/Header/Header";
+import HeaderContainer from "./components/Header/HeaderContainer";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import { ProfileForm } from "./components/Profile/ProfileForm";
@@ -13,7 +13,7 @@ function App() {
         <BrowserRouter>
             <div className="app">
                 <div className="container">
-                    <Header />
+                    <HeaderContainer />
                     <Sidebar />
                     <main className="main">
                         <Routes>
