@@ -6,7 +6,7 @@ import axios from "axios";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        axios(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(({ data }) => {
+        axios(`https://social-network.samuraijs.com/api/1.0/profile/10`).then(({ data }) => {
             this.props.setProfile(data);
         });
     }
