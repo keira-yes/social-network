@@ -9,13 +9,13 @@ import {
     setCurrentPage,
     setIsLoading
 } from "../../redux/reducers/usersReducer";
-import { getUsers } from "../../api/api";
+import { usersAPI } from "../../api/usersAPI";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
         const { usersCurrentPage, usersPageLimit, setUsers, setUsersTotal, setIsLoading } = this.props;
         setIsLoading(true);
-        getUsers(usersCurrentPage, usersPageLimit).then(data => {
+        usersAPI.getUsers(usersCurrentPage, usersPageLimit).then(data => {
                 setIsLoading(false);
                 setUsers(data.items);
                 setUsersTotal(data.totalCount);
@@ -27,7 +27,7 @@ class UsersContainer extends React.Component {
         setIsLoading(true);
         setCurrentPage(page);
 
-        getUsers(page, usersPageLimit).then(data => {
+        usersAPI.getUsers(page, usersPageLimit).then(data => {
                 setIsLoading(false);
                 setUsers(data.items);
             });

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import classes from './Users.module.css';
 import avatar from "../../assets/images/avatar.png";
-import { followUser, unFollowUser } from "../../api/api";
+import { usersAPI } from "../../api/usersAPI";
 
 export const Users = ({ usersTotal, usersPageLimit, users, toggleFollowUser, usersCurrentPage, handlePageChange }) => {
     const pages = [];
@@ -20,13 +20,13 @@ export const Users = ({ usersTotal, usersPageLimit, users, toggleFollowUser, use
                         </NavLink>
                         <button type="button" onClick={() => {
                             if (!user.followed) {
-                                followUser(user.id).then(data => {
+                                usersAPI.followUser(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         toggleFollowUser(user.id);
                                     }
                                 });
                             } else {
-                                unFollowUser(user.id).then(data => {
+                                usersAPI.unFollowUser(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         toggleFollowUser(user.id);
                                     }

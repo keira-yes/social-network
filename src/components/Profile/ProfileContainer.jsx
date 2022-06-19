@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { setProfile } from "../../redux/reducers/profileReducer";
 import WithRouter from "../hoc/WithRouter";
 import { Profile } from "./Profile";
-import { getProfile } from '../../api/api';
+import { usersAPI } from '../../api/usersAPI';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
         const { router, setProfile } = this.props;
         const userId = router.params.id || 2;
-        getProfile(userId).then(data => {
+        usersAPI.getProfile(userId).then(data => {
             setProfile(data);
         });
     }
