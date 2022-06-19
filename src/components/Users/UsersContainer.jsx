@@ -7,7 +7,8 @@ import {
     setUsersTotal,
     toggleFollowUser,
     setCurrentPage,
-    setIsLoading
+    setIsLoading,
+    setIsFetching
 } from "../../redux/reducers/usersReducer";
 import { usersAPI } from "../../api/usersAPI";
 
@@ -43,6 +44,8 @@ class UsersContainer extends React.Component {
                 usersCurrentPage={this.props.usersCurrentPage}
                 toggleFollowUser={this.props.toggleFollowUser}
                 handlePageChange={this.handlePageChange}
+                fetchingItems={this.props.fetchingItems}
+                setIsFetching={this.props.setIsFetching}
             />
         </>
     }
@@ -54,9 +57,10 @@ const mapStateToProps = (state) => {
         usersTotal: state.usersReducer.usersTotal,
         usersPageLimit: state.usersReducer.usersPageLimit,
         usersCurrentPage: state.usersReducer.usersCurrentPage,
-        isLoading: state.usersReducer.isLoading
+        isLoading: state.usersReducer.isLoading,
+        fetchingItems: state.usersReducer.fetchingItems
     }
 }
 
 export default connect(mapStateToProps,
-    { setUsers, setUsersTotal, toggleFollowUser, setCurrentPage, setIsLoading })(UsersContainer);
+    { setUsers, setUsersTotal, toggleFollowUser, setCurrentPage, setIsLoading, setIsFetching })(UsersContainer);

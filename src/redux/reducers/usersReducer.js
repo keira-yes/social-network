@@ -3,13 +3,15 @@ const SET_USERS_TOTAL = 'SET_USERS_TOTAL';
 const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_IS_LOADING = 'SET_IS_LOADING';
+const SET_IS_FETCHING = 'SET_IS_FETCHING';
 
 const initialState = {
     users: [],
     usersTotal: 0,
     usersPageLimit: 10,
     usersCurrentPage: 1,
-    isLoading: false
+    isLoading: false,
+    fetchingItems: []
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -44,6 +46,13 @@ export const usersReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.payload
             }
+        case SET_IS_FETCHING:
+            return {
+                ...state,
+                fetchingItems: action.isFetching ?
+                    [...state.fetchingItems, action.id] :
+                    state.fetchingItems.filter(id => id !== action.id)
+            }
         default:
             return state;
     }
@@ -67,4 +76,8 @@ export const setCurrentPage = (payload) => {
 
 export const setIsLoading = (payload) => {
     return { type: SET_IS_LOADING, payload };
+}
+
+export const setIsFetching = (isFetching, id) => {
+    return { type: SET_IS_FETCHING, isFetching, id };
 }

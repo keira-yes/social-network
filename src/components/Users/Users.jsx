@@ -4,7 +4,18 @@ import classes from './Users.module.css';
 import avatar from "../../assets/images/avatar.png";
 import { usersAPI } from "../../api/usersAPI";
 
-export const Users = ({ usersTotal, usersPageLimit, users, toggleFollowUser, usersCurrentPage, handlePageChange }) => {
+export const Users = (
+    {
+        usersTotal,
+        usersPageLimit,
+        users,
+        toggleFollowUser,
+        usersCurrentPage,
+        handlePageChange,
+        setIsFetching,
+        fetchingItems
+    }) => {
+
     const pages = [];
     const pagesCount = Math.ceil(usersTotal / usersPageLimit);
     for (let i = 1; i <= pagesCount; i++) {
@@ -18,18 +29,21 @@ export const Users = ({ usersTotal, usersPageLimit, users, toggleFollowUser, use
                         <NavLink to={'/profile/' + user.id}>
                             <img src={user.photos.small !== null ? user.photos.small : avatar} alt={user.name} />
                         </NavLink>
-                        <button type="button" onClick={() => {
+                        <button type="button" disabled={fetchingItems.includes(user.id)} onClick={() => {
+                            setIsFetching(true, user.id)
                             if (!user.followed) {
                                 usersAPI.followUser(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         toggleFollowUser(user.id);
                                     }
+                                    setIsFetching(false, user.id);
                                 });
                             } else {
                                 usersAPI.unFollowUser(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         toggleFollowUser(user.id);
                                     }
+                                    setIsFetching(false, user.id);
                                 });
                             }
                         }}>
