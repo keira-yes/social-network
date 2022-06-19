@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { Users } from "./Users";
 import { Preloader } from "../Preloader/Preloader";
@@ -10,13 +9,13 @@ import {
     setCurrentPage,
     setIsLoading
 } from "../../redux/reducers/usersReducer";
+import { getUsers } from "../../api/api";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
         const { usersCurrentPage, usersPageLimit, setUsers, setUsersTotal, setIsLoading } = this.props;
         setIsLoading(true);
-        axios(`https://social-network.samuraijs.com/api/1.0/users?page=${usersCurrentPage}&count=${usersPageLimit}`, { withCredentials: true })
-            .then(({ data }) => {
+        getUsers(usersCurrentPage, usersPageLimit).then(data => {
                 setIsLoading(false);
                 setUsers(data.items);
                 setUsersTotal(data.totalCount);
@@ -28,8 +27,7 @@ class UsersContainer extends React.Component {
         setIsLoading(true);
         setCurrentPage(page);
 
-        axios(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${usersPageLimit}`, { withCredentials: true })
-            .then(({ data }) => {
+        getUsers(page, usersPageLimit).then(data => {
                 setIsLoading(false);
                 setUsers(data.items);
             });
