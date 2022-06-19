@@ -11,6 +11,11 @@ export const getUsers = (usersCurrentPage = 1, usersPageLimit = 10) => {
         .then(response => response.data);
 }
 
+export const getProfile = (id) => {
+    return axios(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
+        .then(response => response.data);
+}
+
 export const followUser = (id) => {
     return axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
         withCredentials: true,
