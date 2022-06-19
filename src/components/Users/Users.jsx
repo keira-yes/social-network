@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 import classes from './Users.module.css';
 import avatar from "../../assets/images/avatar.png";
+import axios from "axios";
 
 export const Users = ({ usersTotal, usersPageLimit, users, toggleFollowUser, usersCurrentPage, handlePageChange }) => {
     const pages = [];
@@ -17,7 +18,31 @@ export const Users = ({ usersTotal, usersPageLimit, users, toggleFollowUser, use
                         <NavLink to={'/profile/' + user.id}>
                             <img src={user.photos.small !== null ? user.photos.small : avatar} alt={user.name} />
                         </NavLink>
-                        <button type="button" onClick={() => toggleFollowUser(user.id)}>
+                        <button type="button" onClick={() => {
+                            if (!user.followed) {
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "70166802-e642-44ee-a14c-87b3ffa9a643"
+                                    }
+                                }).then(({ data }) => {
+                                    if (data.resultCode === 0) {
+                                        toggleFollowUser(user.id);
+                                    }
+                                });
+                            } else {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "70166802-e642-44ee-a14c-87b3ffa9a643"
+                                    }
+                                }).then(({ data }) => {
+                                    if (data.resultCode === 0) {
+                                        toggleFollowUser(user.id);
+                                    }
+                                });
+                            }
+                        }}>
                             {user.followed ? "Unfollow" : "Follow"}
                         </button>
                     </div>

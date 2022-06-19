@@ -15,11 +15,12 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         const { usersCurrentPage, usersPageLimit, setUsers, setUsersTotal, setIsLoading } = this.props;
         setIsLoading(true);
-        axios(`https://social-network.samuraijs.com/api/1.0/users?page=${usersCurrentPage}&count=${usersPageLimit}`).then(({ data }) => {
-            setIsLoading(false);
-            setUsers(data.items);
-            setUsersTotal(data.totalCount);
-        });
+        axios(`https://social-network.samuraijs.com/api/1.0/users?page=${usersCurrentPage}&count=${usersPageLimit}`, { withCredentials: true })
+            .then(({ data }) => {
+                setIsLoading(false);
+                setUsers(data.items);
+                setUsersTotal(data.totalCount);
+            });
     }
 
     handlePageChange = (page) => {
@@ -27,10 +28,11 @@ class UsersContainer extends React.Component {
         setIsLoading(true);
         setCurrentPage(page);
 
-        axios(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${usersPageLimit}`).then(({ data }) => {
-            setIsLoading(false);
-            setUsers(data.items);
-        });
+        axios(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${usersPageLimit}`, { withCredentials: true })
+            .then(({ data }) => {
+                setIsLoading(false);
+                setUsers(data.items);
+            });
     }
 
     render() {
