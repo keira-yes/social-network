@@ -1,3 +1,5 @@
+import { profileAPI } from "../../api/profileAPI";
+
 const SET_PROFILE = 'SET_PROFILE';
 const UPDATE_POST = 'UPDATE_POST';
 const ADD_POST = 'ADD_POST';
@@ -44,4 +46,10 @@ export const updatePost = (payload) => {
 
 export const addPost = () => {
     return { type: ADD_POST };
+}
+
+export const getProfile = (id) => dispatch => {
+    profileAPI.getProfile(id).then(data => {
+        dispatch(setProfile(data));
+    });
 }
