@@ -5,6 +5,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import { ProfileForm } from "./components/Profile/ProfileForm";
 import MessagesContainer from './components/Messages/MessagesContainer';
 import UsersContainer from "./components/Users/UsersContainer";
+import { Login } from './components/Login/Login';
 import './App.css';
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
                             <Route
                                 path="users"
                                 element={<UsersContainer />}
+                            />
+                            <Route
+                                path="login"
+                                element={<Login />}
                             />
                         </Routes>
                     </main>

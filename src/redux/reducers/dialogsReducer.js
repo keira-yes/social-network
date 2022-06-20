@@ -41,10 +41,10 @@ export const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const updateMessageCreator = (payload) => {
+export const updateMessage = (payload) => {
     return { type: UPDATE_MESSAGE, payload }
 }
 
-export const addMessageCreator = () => {
+export const addMessage = () => {
     return { type: ADD_MESSAGE };
 }

@@ -1,24 +1,14 @@
 import { connect } from 'react-redux';
 import { Messages } from './Messages';
-import { addMessageCreator, updateMessageCreator } from "../../redux/reducers/dialogsReducer";
+import { addMessage, updateMessage } from "../../redux/reducers/dialogsReducer";
 
 const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogsReducer.dialogs,
         messages: state.dialogsReducer.messages,
-        newMessageText:state.dialogsReducer.newMessageText
+        newMessageText: state.dialogsReducer.newMessageText,
+        isAuth: state.authReducer.isAuth
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addMessage: () => {
-            dispatch(addMessageCreator());
-        },
-        updateMessage: (text) => {
-            dispatch(updateMessageCreator(text));
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Messages);
+export default connect(mapStateToProps, { addMessage, updateMessage })(Messages);
