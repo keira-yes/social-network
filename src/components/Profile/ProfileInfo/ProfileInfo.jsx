@@ -7,6 +7,7 @@ import Instagram from "../../../assets/images/instagram.svg";
 import Youtube from "../../../assets/images/youtube.svg";
 import Github from "../../../assets/images/github.svg";
 import Link from "../../../assets/images/link.svg";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 export const ProfileInfo = ({ profile }) => {
     if (!profile) {
@@ -26,6 +27,7 @@ export const ProfileInfo = ({ profile }) => {
         <div>
             <img src={photos.large} alt={fullName} />
             <h2>{fullName}</h2>
+            <ProfileStatus status="Status" />
             <p><strong>About:</strong> {aboutMe}</p>
             <p><strong>Looking for a job:</strong> {lookingForAJob ? 'Yes' : 'No'}</p>
             <p><strong>Comment:</strong> {lookingForAJobDescription}</p>
