@@ -1,10 +1,6 @@
 import { instance } from "./instance";
 
 export const usersAPI = {
-    getAuthData() {
-        return instance(`auth/me`).then(response => response.data);
-    },
-
     getUsers(usersCurrentPage = 1, usersPageLimit = 10) {
         return instance(`users?page=${usersCurrentPage}&count=${usersPageLimit}`).then(response => response.data);
     },
