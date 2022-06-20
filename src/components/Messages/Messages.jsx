@@ -1,17 +1,14 @@
 import React from 'react';
-import { Navigate } from "react-router-dom";
 import { MessagesBlock } from './MessagesBlock/MessagesBlock';
 import { Message } from './Message/Message';
 import classes from './Messages.module.css';
 
-export const Messages = ({ isAuth, dialogs, messages, newMessageText, addMessage, updateMessage }) => {
+export const Messages = ({ dialogs, messages, newMessageText, addMessage, updateMessage }) => {
 
     const onUpdateMessage = (e) => {
         let messageContent = e.target.value;
         updateMessage(messageContent);
     }
-
-    if (!isAuth) return <Navigate to="/login" />
 
     return (
         <div>
