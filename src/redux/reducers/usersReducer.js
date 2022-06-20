@@ -1,3 +1,5 @@
+import { usersAPI } from "../../api/usersAPI";
+
 const SET_USERS = 'SET_USERS';
 const SET_USERS_TOTAL = 'SET_USERS_TOTAL';
 const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
@@ -58,6 +60,10 @@ export const usersReducer = (state = initialState, action) => {
     }
 }
 
+export const setIsLoading = (payload) => {
+    return { type: SET_IS_LOADING, payload };
+}
+
 export const setUsers = (payload) => {
     return { type: SET_USERS, payload };
 }
@@ -74,10 +80,34 @@ export const setCurrentPage = (payload) => {
     return { type: SET_CURRENT_PAGE, payload };
 }
 
-export const setIsLoading = (payload) => {
-    return { type: SET_IS_LOADING, payload };
-}
-
 export const setIsFetching = (isFetching, id) => {
     return { type: SET_IS_FETCHING, isFetching, id };
+}
+
+export const getUsers = (usersCurrentPage, usersPageLimit) => dispatch => {
+    dispatch(setIsLoading(true));
+    usersAPI.getUsers(usersCurrentPage, usersPageLimit).then(data => {
+        dispatch(setIsLoading(false));
+        dispatch(setUsers(data.items));
+        dispatch(setUsersTotal(data.totalCount));
+    });
+}
+
+export const setFollowUser = (followed, id) => dispatch => {
+    dispatch(setIsFetching(true, id))
+    if (!followed) {
+        usersAPI.followUser(id).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(toggleFollowUser(id));
+            }
+            dispatch(setIsFetching(false, id));
+        });
+    } else {
+        usersAPI.unFollowUser(id).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(toggleFollowUser(id));
+            }
+            dispatch(setIsFetching(false, id));
+        });
+    }
 }

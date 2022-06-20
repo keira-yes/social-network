@@ -3,35 +3,22 @@ import { connect } from "react-redux";
 import { Users } from "./Users";
 import { Preloader } from "../Preloader/Preloader";
 import {
-    setUsers,
-    setUsersTotal,
-    toggleFollowUser,
+    getUsers,
     setCurrentPage,
-    setIsLoading,
-    setIsFetching
+    setFollowUser
 } from "../../redux/reducers/usersReducer";
-import { usersAPI } from "../../api/usersAPI";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        const { usersCurrentPage, usersPageLimit, setUsers, setUsersTotal, setIsLoading } = this.props;
-        setIsLoading(true);
-        usersAPI.getUsers(usersCurrentPage, usersPageLimit).then(data => {
-                setIsLoading(false);
-                setUsers(data.items);
-                setUsersTotal(data.totalCount);
-            });
+        const { getUsers, usersCurrentPage, usersPageLimit } = this.props;
+        getUsers(usersCurrentPage, usersPageLimit);
     }
 
     handlePageChange = (page) => {
-        const { setCurrentPage, usersPageLimit, setUsers, setIsLoading } = this.props;
-        setIsLoading(true);
-        setCurrentPage(page);
+        const { setCurrentPage, getUsers, usersPageLimit } = this.props;
 
-        usersAPI.getUsers(page, usersPageLimit).then(data => {
-                setIsLoading(false);
-                setUsers(data.items);
-            });
+        setCurrentPage(page);
+        getUsers(page, usersPageLimit);
     }
 
     render() {
@@ -42,10 +29,9 @@ class UsersContainer extends React.Component {
                 usersTotal={this.props.usersTotal}
                 usersPageLimit={this.props.usersPageLimit}
                 usersCurrentPage={this.props.usersCurrentPage}
-                toggleFollowUser={this.props.toggleFollowUser}
                 handlePageChange={this.handlePageChange}
                 fetchingItems={this.props.fetchingItems}
-                setIsFetching={this.props.setIsFetching}
+                setFollowUser={this.props.setFollowUser}
             />
         </>
     }
@@ -63,4 +49,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,
-    { setUsers, setUsersTotal, toggleFollowUser, setCurrentPage, setIsLoading, setIsFetching })(UsersContainer);
+    { getUsers, setCurrentPage, setFollowUser })(UsersContainer);
