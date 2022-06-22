@@ -12,11 +12,12 @@ class ProfileStatus extends React.Component {
     }
 
     render() {
+        const status = this.props.status;
         return (
             <>
                 {this.state.editMode ?
-                    <div><input type="text" value={this.props.status} autoFocus={true} onBlur={this.handleChangeMode} /></div> :
-                    <div onDoubleClick={this.handleChangeMode}>{this.props.status}</div>
+                    <div><input type="text" value={status} autoFocus={true} onBlur={this.handleChangeMode} /></div> :
+                    <div onDoubleClick={this.handleChangeMode}>{status}</div>
                 }
             </>
         )

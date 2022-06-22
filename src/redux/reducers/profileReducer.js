@@ -3,9 +3,12 @@ import { profileAPI } from "../../api/profileAPI";
 const SET_PROFILE = 'SET_PROFILE';
 const UPDATE_POST = 'UPDATE_POST';
 const ADD_POST = 'ADD_POST';
+const SET_STATUS = 'SET_STATUS';
+const UPDATE_STATUS = 'UPDATE_STATUS';
 
 const initialState = {
     profile: null,
+    status: '',
     posts: [
         {id: 1, message: "Hello World!", likes: 5},
         {id: 2, message: "My first post...", likes: 12}
@@ -31,6 +34,8 @@ export const profileReducer = (state = initialState, action) => {
                 posts: [...state.posts, newPost],
                 newPostText: ''
             }
+        case SET_STATUS:
+            return { ...state, status: action.payload }
         default:
             return state;
     }
@@ -48,8 +53,18 @@ export const addPost = () => {
     return { type: ADD_POST };
 }
 
-export const getProfile = (id) => dispatch => {
+export const getProfile = id => dispatch => {
     profileAPI.getProfile(id).then(data => {
         dispatch(setProfile(data));
+    });
+}
+
+export const setStatus = payload => {
+    return { type: SET_STATUS, payload }
+}
+
+export const getStatus = id => dispatch => {
+    profileAPI.getStatus(id).then(data => {
+        dispatch(setStatus(data));
     });
 }
