@@ -24,7 +24,7 @@ export const Users = (
             {users.map(user => (
                 <article key={user.id}>
                     <div>
-                        <NavLink to={'/profile/' + user.id}>
+                        <NavLink to={`/users/${user.id}`}>
                             <img src={user.photos.small !== null ? user.photos.small : avatar} alt={user.name} />
                         </NavLink>
                         <button

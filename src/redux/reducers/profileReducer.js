@@ -4,7 +4,6 @@ const SET_PROFILE = 'SET_PROFILE';
 const UPDATE_POST = 'UPDATE_POST';
 const ADD_POST = 'ADD_POST';
 const SET_STATUS = 'SET_STATUS';
-const UPDATE_STATUS = 'UPDATE_STATUS';
 
 const initialState = {
     profile: null,
@@ -66,5 +65,11 @@ export const setStatus = payload => {
 export const getStatus = id => dispatch => {
     profileAPI.getStatus(id).then(data => {
         dispatch(setStatus(data));
+    });
+}
+
+export const updateStatus = status => dispatch => {
+    profileAPI.updateStatus(status).then(() => {
+        dispatch(setStatus(status));
     });
 }

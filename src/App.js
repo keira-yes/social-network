@@ -18,10 +18,10 @@ function App() {
                     <Sidebar />
                     <main className="main">
                         <Routes>
-                            <Route path="profile">
-                                <Route path="" element={<ProfileForm />} />
-                                <Route path=":id" element={<ProfileContainer />} />
-                            </Route>
+                            <Route
+                                path="profile"
+                                element={<ProfileForm />}
+                            />
                             <Route
                                 path="messages"
                                 element={<MessagesContainer />}
@@ -29,6 +29,10 @@ function App() {
                             <Route
                                 path="users"
                                 element={<UsersContainer />}
+                            />
+                            <Route
+                                path="users/:id"
+                                element={<ProfileContainer />}
                             />
                             <Route
                                 path="login"

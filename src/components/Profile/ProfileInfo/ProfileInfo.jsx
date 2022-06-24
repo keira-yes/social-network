@@ -9,7 +9,7 @@ import Github from "../../../assets/images/github.svg";
 import Link from "../../../assets/images/link.svg";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
-export const ProfileInfo = ({ profile, status }) => {
+export const ProfileInfo = ({ profile, status, updateStatus }) => {
     if (!profile) {
         return <Preloader />
     }
@@ -27,7 +27,7 @@ export const ProfileInfo = ({ profile, status }) => {
         <div>
             <img src={photos.large} alt={fullName} />
             <h2>{fullName}</h2>
-            <ProfileStatus status={status} />
+            <ProfileStatus status={status} updateStatus={updateStatus} />
             <p><strong>About:</strong> {aboutMe}</p>
             <p><strong>Looking for a job:</strong> {lookingForAJob ? 'Yes' : 'No'}</p>
             <p><strong>Comment:</strong> {lookingForAJobDescription}</p>
