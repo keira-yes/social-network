@@ -6,6 +6,14 @@ class ProfileStatus extends React.Component {
         status: this.props.status
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            });
+        }
+    }
+
     changeMode = () => {
         this.setState({
             editMode: !this.state.editMode
@@ -35,7 +43,9 @@ class ProfileStatus extends React.Component {
                             onChange={this.changeInput}
                             onBlur={this.handleUpdateStatus} />
                     </div> :
-                    <div onDoubleClick={this.changeMode}>{this.props.status || '-----'}</div>
+                    <div onDoubleClick={this.changeMode}>
+                        {this.props.status ? this.props.status : 'Enter status...'}
+                    </div>
                 }
             </>
         )
