@@ -1,21 +1,16 @@
-import React from 'react';
+import PostForm from '../PostForm/PostForm';
 import { Post } from '../Post/Post';
 import classes from './Posts.module.css';
 
-export const Posts = ({ posts, newPostText, addPost, updatePost }) => {
-    const newPost = React.createRef();
+export const Posts = ({ posts, addPost }) => {
 
-    const onUpdatePost = () => {
-        let postContent = newPost.current.value;
-        updatePost(postContent);
+    const addNewPost = data => {
+        addPost(data.post);
     }
 
     return (
         <div>
-            <div className="form">
-                <textarea ref={newPost} value={newPostText} onChange={onUpdatePost} />
-                <button onClick={addPost}>Send</button>
-            </div>
+            <PostForm onSubmit={addNewPost} />
             <div className={classes.posts}>
                 {posts.map(item => <Post key={item.id} message={item.message} likes={item.likes} />)}
             </div>
