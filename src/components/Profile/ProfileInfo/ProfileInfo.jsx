@@ -1,4 +1,4 @@
-import { Preloader } from "../../Preloader/Preloader";
+import { Preloader } from "../../common/Preloader/Preloader";
 import Facebook from "../../../assets/images/facebook.svg";
 import Web from "../../../assets/images/web.svg";
 import Vk from "../../../assets/images/vk.svg";
