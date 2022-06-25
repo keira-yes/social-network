@@ -1,4 +1,3 @@
-const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 const ADD_MESSAGE = 'ADD_MESSAGE';
 
 const initialState = {
@@ -14,22 +13,16 @@ const initialState = {
         {id: 1, message: "Hi world"},
         {id: 2, message: "How are you doing"},
         {id: 3, message: "Miss you"}
-    ],
-    newMessageText: ''
+    ]
 }
 
 export const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_MESSAGE:
-            return {
-                ...state,
-                newMessageText: action.payload
-            }
         case ADD_MESSAGE:
             const newPost = {
                 id: state.messages.length + 1,
-                message: state.newMessageText
+                message: action.payload
             }
             return {
                 ...state,
@@ -41,10 +34,6 @@ export const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const updateMessage = (payload) => {
-    return { type: UPDATE_MESSAGE, payload }
-}
-
-export const addMessage = () => {
-    return { type: ADD_MESSAGE };
+export const addMessage = payload => {
+    return { type: ADD_MESSAGE, payload };
 }
