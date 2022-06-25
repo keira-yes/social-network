@@ -4,6 +4,7 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import MessagesContainer from './components/Messages/MessagesContainer';
 import UsersContainer from "./components/Users/UsersContainer";
+import MyProfileContainer from "./components/Profile/MyProfile/MyProfileContainer";
 import { Login } from './components/Login/Login';
 import './App.css';
 
@@ -19,7 +20,7 @@ function App() {
                         <Routes>
                             <Route
                                 path="profile"
-                                element={<Login />}
+                                element={<MyProfileContainer />}
                             />
                             <Route
                                 path="messages"

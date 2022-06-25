@@ -1,6 +1,6 @@
 import { Field, reduxForm } from 'redux-form';
 import { Input } from "../../hoc/FormField/FormField";
-import {maxLength, required} from "../../../utils/validators";
+import { maxLength, required } from "../../../utils/validators";
 
 const maxLength16 = maxLength(16);
 
