@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Users } from "./Users";
-import { Preloader } from "../common/Preloader/Preloader";
+import { Preloader } from "../Preloader/Preloader";
 import {
     getUsers,
     setCurrentPage,
