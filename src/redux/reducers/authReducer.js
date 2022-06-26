@@ -29,7 +29,7 @@ export const resetAuthData = () => {
 }
 
 export const getAuthData = () => dispatch => {
-    authAPI.getAuthData().then(data => {
+    return authAPI.getAuthData().then(data => {
         if (data.resultCode === 0) {
             dispatch(setAuthData(data));
         }
