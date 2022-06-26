@@ -27,3 +27,11 @@ export const getAuthData = () => dispatch => {
         }
     });
 }
+
+export const logIn = (email, password, rememberMe = false) => dispatch => {
+    authAPI.login(email, password, rememberMe).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(getAuthData());
+        }
+    });
+}

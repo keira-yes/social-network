@@ -21,7 +21,7 @@ const LoginForm = ({ handleSubmit }) => {
                 <Field
                     name="password"
                     component={Input}
-                    type="text"
+                    type="password"
                     validate={[required, maxLength16]}
                 />
             </div>

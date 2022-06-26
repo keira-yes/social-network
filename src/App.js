@@ -5,7 +5,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import MessagesContainer from './components/Messages/MessagesContainer';
 import UsersContainer from "./components/Users/UsersContainer";
 import MyProfileContainer from "./components/Profile/MyProfile/MyProfileContainer";
-import { Login } from './components/Login/Login';
+import LoginContainer from './components/Login/LoginContainer';
 import './App.css';
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
                             />
                             <Route
                                 path="login"
-                                element={<Login />}
+                                element={<LoginContainer />}
                             />
                         </Routes>
                     </main>

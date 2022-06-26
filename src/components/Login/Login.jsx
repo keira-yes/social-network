@@ -1,9 +1,8 @@
 import LoginForm from './LoginForm/LoginForm';
+import {Navigate} from "react-router-dom";
 
-export const Login = () => {
-    const submitForm = (formData) => {
-        console.log(formData)
-    }
+export const Login = ({ isAuth, submitForm }) => {
+    if (isAuth) return <Navigate to="/profile" />
 
     return (
         <div>
