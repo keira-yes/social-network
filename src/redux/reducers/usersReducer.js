@@ -84,7 +84,7 @@ export const setIsFetching = (isFetching, id) => {
     return { type: SET_IS_FETCHING, isFetching, id };
 }
 
-export const getUsers = (usersCurrentPage, usersPageLimit) => dispatch => {
+export const fetchUsers = (usersCurrentPage, usersPageLimit) => dispatch => {
     dispatch(setIsLoading(true));
     usersAPI.getUsers(usersCurrentPage, usersPageLimit).then(data => {
         dispatch(setIsLoading(false));

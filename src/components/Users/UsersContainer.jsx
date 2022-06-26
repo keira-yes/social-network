@@ -3,22 +3,30 @@ import { connect } from "react-redux";
 import { Users } from "./Users";
 import { Preloader } from "../Preloader/Preloader";
 import {
-    getUsers,
+    fetchUsers,
     setCurrentPage,
     setFollowUser
 } from "../../redux/reducers/usersReducer";
+import {
+    getFetchingItems,
+    getIsLoading,
+    getUsers,
+    getUsersCurrentPage,
+    getUsersPageLimit,
+    getUsersTotal
+} from "../../redux/selectors/usersSelector";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        const { getUsers, usersCurrentPage, usersPageLimit } = this.props;
-        getUsers(usersCurrentPage, usersPageLimit);
+        const { fetchUsers, usersCurrentPage, usersPageLimit } = this.props;
+        fetchUsers(usersCurrentPage, usersPageLimit);
     }
 
     handlePageChange = (page) => {
-        const { setCurrentPage, getUsers, usersPageLimit } = this.props;
+        const { setCurrentPage, fetchUsers, usersPageLimit } = this.props;
 
         setCurrentPage(page);
-        getUsers(page, usersPageLimit);
+        fetchUsers(page, usersPageLimit);
     }
 
     render() {
@@ -39,14 +47,14 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersReducer.users,
-        usersTotal: state.usersReducer.usersTotal,
-        usersPageLimit: state.usersReducer.usersPageLimit,
-        usersCurrentPage: state.usersReducer.usersCurrentPage,
-        isLoading: state.usersReducer.isLoading,
-        fetchingItems: state.usersReducer.fetchingItems
+        users: getUsers(state),
+        usersTotal: getUsersTotal(state),
+        usersPageLimit: getUsersPageLimit(state),
+        usersCurrentPage: getUsersCurrentPage(state),
+        isLoading: getIsLoading(state),
+        fetchingItems: getFetchingItems(state)
     }
 }
 
 export default connect(mapStateToProps,
-    { getUsers, setCurrentPage, setFollowUser })(UsersContainer);
+    { fetchUsers, setCurrentPage, setFollowUser })(UsersContainer);
