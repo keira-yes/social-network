@@ -8,7 +8,7 @@ import { getProfile, getStatus, updateStatus } from "../../redux/reducers/profil
 class ProfileContainer extends React.Component {
     componentDidMount() {
         const { router, getProfile, getStatus } = this.props;
-        const userId = router.params.id || 2;
+        const userId = router.params.id;
         getProfile(userId);
         getStatus(userId);
     }

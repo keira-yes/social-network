@@ -1,4 +1,5 @@
 import { authAPI } from "../../api/authAPI";
+import { stopSubmit } from "redux-form";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 const RESET_AUTH_DATA = 'RESET_AUTH_DATA';
@@ -39,6 +40,9 @@ export const logIn = (email, password, rememberMe = false) => dispatch => {
     authAPI.login(email, password, rememberMe).then(data => {
         if (data.resultCode === 0) {
             dispatch(getAuthData());
+        } else {
+            const errorMessage = data.messages.length ? data.messages[0] : 'Something went wrong...';
+            dispatch(stopSubmit("login", {_error: errorMessage}));
         }
     });
 }
