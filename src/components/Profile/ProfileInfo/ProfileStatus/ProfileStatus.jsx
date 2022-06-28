@@ -1,55 +1,47 @@
-import React from 'react';
+import { useState } from "react";
 
-class ProfileStatus extends React.Component {
-    state = {
-        editMode: false,
-        status: this.props.status
+const ProfileStatus = ({ status, updateStatus }) => {
+    const [editMode, setEditMode] = useState(false);
+    const [localStatus, setLocalStatus] = useState(status);
+
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     if (prevProps.status !== this.props.status) {
+    //         this.setState({
+    //             status: this.props.status
+    //         });
+    //     }
+    // }
+
+    const changeMode = () => {
+        setEditMode(!editMode);
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            });
-        }
+    const changeInput = (e) => {
+        setLocalStatus(e.target.value);
     }
 
-    changeMode = () => {
-        this.setState({
-            editMode: !this.state.editMode
-        });
+    const handleUpdateStatus = () => {
+        changeMode();
+        updateStatus(localStatus);
     }
 
-    changeInput = (e) => {
-        this.setState({
-            status: e.target.value
-        });
-    }
-
-    handleUpdateStatus = () => {
-        this.changeMode();
-        this.props.updateStatus(this.state.status);
-    }
-
-    render() {
-        return (
-            <>
-                {this.state.editMode ?
-                    <div>
-                        <input
-                            type="text"
-                            value={this.state.status}
-                            autoFocus={true}
-                            onChange={this.changeInput}
-                            onBlur={this.handleUpdateStatus} />
-                    </div> :
-                    <div onDoubleClick={this.changeMode}>
-                        {this.props.status ? this.props.status : 'Enter status...'}
-                    </div>
-                }
-            </>
-        )
-    }
+    return (
+        <>
+            {editMode ?
+                <div>
+                    <input
+                        type="text"
+                        value={localStatus}
+                        autoFocus={true}
+                        onChange={changeInput}
+                        onBlur={handleUpdateStatus} />
+                </div> :
+                <div onDoubleClick={changeMode}>
+                    {status ? status : 'Enter status...'}
+                </div>
+            }
+        </>
+    )
 }
 
 export default ProfileStatus;
