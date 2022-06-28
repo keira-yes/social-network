@@ -8,12 +8,12 @@ import {
     setFollowUser
 } from "../../redux/reducers/usersReducer";
 import {
-    getFetchingItems,
-    getIsLoading,
-    getUsers,
-    getUsersCurrentPage,
-    getUsersPageLimit,
-    getUsersTotal
+    selectFetchingItems,
+    selectIsLoading,
+    selectUsers,
+    selectUsersCurrentPage,
+    selectUsersPageLimit,
+    selectUsersTotal
 } from "../../redux/selectors/usersSelector";
 
 class UsersContainer extends React.Component {
@@ -47,12 +47,12 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: getUsers(state),
-        usersTotal: getUsersTotal(state),
-        usersPageLimit: getUsersPageLimit(state),
-        usersCurrentPage: getUsersCurrentPage(state),
-        isLoading: getIsLoading(state),
-        fetchingItems: getFetchingItems(state)
+        users: selectUsers(state),
+        usersTotal: selectUsersTotal(state),
+        usersPageLimit: selectUsersPageLimit(state),
+        usersCurrentPage: selectUsersCurrentPage(state),
+        isLoading: selectIsLoading(state),
+        fetchingItems: selectFetchingItems(state)
     }
 }
 
