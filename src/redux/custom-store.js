@@ -1,4 +1,4 @@
-import { profileReducer } from "./reducers/profileReducer";
+import { profileReducer } from "./reducers/profileReducer/profileReducer";
 import { dialogsReducer } from "./reducers/dialogsReducer";
 
 const customStore = {

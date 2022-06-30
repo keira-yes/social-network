@@ -1,10 +1,10 @@
-import { profileAPI } from "../../api/profileAPI";
+import { profileAPI } from "../../../api/profileAPI";
 
 const SET_PROFILE = 'SET_PROFILE';
 const ADD_POST = 'ADD_POST';
 const SET_STATUS = 'SET_STATUS';
 
-const initialState = {
+export const initialState = {
     profile: null,
     status: '',
     posts: [

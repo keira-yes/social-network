@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import WithRouter from "../hoc/WithRouter";
 import { Profile } from "./Profile";
-import { getProfile, getStatus, updateStatus } from "../../redux/reducers/profileReducer";
+import { getProfile, getStatus, updateStatus } from "../../redux/reducers/profileReducer/profileReducer";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
