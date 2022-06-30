@@ -1,8 +1,9 @@
 import { profileAPI } from "../../../api/profileAPI";
 
 const SET_PROFILE = 'SET_PROFILE';
-const ADD_POST = 'ADD_POST';
 const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'ADD_POST';
+const DELETE_POST = 'DELETE_POST';
 
 export const initialState = {
     profile: null,
@@ -18,6 +19,8 @@ export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_PROFILE:
             return { ...state, profile: action.payload }
+        case SET_STATUS:
+            return { ...state, status: action.payload }
         case ADD_POST:
             const newPost = {
                 id: state.posts.length + 1,
@@ -28,8 +31,11 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [...state.posts, newPost]
             }
-        case SET_STATUS:
-            return { ...state, status: action.payload }
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(item => item.id !== action.payload)
+            }
         default:
             return state;
     }
@@ -37,6 +43,10 @@ export const profileReducer = (state = initialState, action) => {
 
 export const addPost = payload => {
     return { type: ADD_POST, payload };
+}
+
+export const deletePost = payload => {
+    return { type: DELETE_POST, payload };
 }
 
 export const setProfile = payload => {
