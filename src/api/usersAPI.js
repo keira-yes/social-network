@@ -1,15 +1,18 @@
 import { instance } from "./instance";
 
 export const usersAPI = {
-    getUsers(usersCurrentPage = 1, usersPageLimit = 10) {
-        return instance(`users?page=${usersCurrentPage}&count=${usersPageLimit}`).then(response => response.data);
+    async getUsers(usersCurrentPage = 1, usersPageLimit = 10) {
+        const { data } = await instance(`users?page=${usersCurrentPage}&count=${usersPageLimit}`);
+        return data;
     },
 
-    followUser(id) {
-        return instance.post(`follow/${id}`).then(response => response.data);
+    async followUser(id) {
+        const { data } = await instance.post(`follow/${id}`);
+        return data;
     },
 
-    unFollowUser(id) {
-        return instance.delete(`follow/${id}`).then(response => response.data);
+    async unFollowUser(id) {
+        const { data } = await instance.delete(`follow/${id}`);
+        return data;
     }
 }

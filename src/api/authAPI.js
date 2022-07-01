@@ -1,13 +1,16 @@
 import { instance } from "./instance";
 
 export const authAPI = {
-    getAuthData() {
-        return instance('auth/me').then(response => response.data);
+    async getAuthData() {
+        const { data } = await instance('auth/me');
+        return data;
     },
-    login(email, password, rememberMe) {
-        return instance.post('auth/login', {email, password, rememberMe}).then(response => response.data);
+    async login(email, password, rememberMe) {
+        const { data } = await instance.post('auth/login', {email, password, rememberMe});
+        return data;
     },
-    logout() {
-        return instance.delete('auth/login').then(response => response.data);
+    async logout() {
+        const { data } = await instance.delete('auth/login');
+        return data;
     }
 }
