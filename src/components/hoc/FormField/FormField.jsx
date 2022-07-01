@@ -1,4 +1,4 @@
-import styles from './FormField.module.css';
+import styles from "./FormField.module.css";
 
 const FormField = Component => ({input, meta, ...props}) => {
     const hasError = meta.touched && meta.error;

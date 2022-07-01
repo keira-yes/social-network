@@ -1,7 +1,7 @@
-import LoginForm from './LoginForm/LoginForm';
-import {Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import LoginForm from "./LoginForm/LoginForm";
 
-export const Login = ({ isAuth, submitForm }) => {
+const Login = ({ isAuth, submitForm }) => {
     if (isAuth) return <Navigate to="/profile" />
 
     return (
@@ -11,3 +11,5 @@ export const Login = ({ isAuth, submitForm }) => {
         </div>
     )
 }
+
+export default Login;

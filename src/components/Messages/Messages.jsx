@@ -1,10 +1,9 @@
-import React from 'react';
-import { MessagesBlock } from './MessagesBlock/MessagesBlock';
-import { Message } from './Message/Message';
-import MessageForm from './MessageForm/MessageForm';
-import classes from './Messages.module.css';
+import MessagesBlock from "./MessagesBlock/MessagesBlock";
+import Message from "./Message/Message";
+import MessageForm from "./MessageForm/MessageForm";
+import classes from "./Messages.module.css";
 
-export const Messages = ({ dialogs, messages, addMessage }) => {
+const Messages = ({ dialogs, messages, addMessage }) => {
 
     const addNewMessage = data => {
         addMessage(data.message);
@@ -25,3 +24,5 @@ export const Messages = ({ dialogs, messages, addMessage }) => {
         </div>
     )
 }
+
+export default Messages;

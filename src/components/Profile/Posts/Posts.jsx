@@ -1,8 +1,8 @@
-import PostForm from '../PostForm/PostForm';
-import { Post } from '../Post/Post';
-import classes from './Posts.module.css';
+import PostForm from "../PostForm/PostForm";
+import Post from "../Post/Post";
+import classes from "./Posts.module.css";
 
-export const Posts = ({ posts, addPost }) => {
+const Posts = ({ posts, addPost }) => {
 
     const addNewPost = data => {
         addPost(data.post);
@@ -17,3 +17,5 @@ export const Posts = ({ posts, addPost }) => {
         </div>
     )
 }
+
+export default Posts;

@@ -1,4 +1,4 @@
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from "redux-form";
 import { required, maxLength } from "../../../utils/validators";
 import { Textarea } from "../../hoc/FormField/FormField";
 

@@ -1,7 +1,7 @@
-import classes from './Header.module.css';
 import { NavLink } from "react-router-dom";
+import classes from "./Header.module.css";
 
-export const Header = ({ isAuth, authData, logOut }) => {
+const Header = ({ isAuth, authData, logOut }) => {
     return (
         <header className={classes.header}>
             <NavLink to="/">Logo</NavLink>
@@ -14,3 +14,5 @@ export const Header = ({ isAuth, authData, logOut }) => {
         </header>
     )
 }
+
+export default Header;

@@ -1,23 +1,19 @@
-import React from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import WithRouter from "../hoc/WithRouter";
-import { Profile } from "./Profile";
+import Profile from "./Profile";
 import { getProfile, getStatus, updateStatus } from "../../redux/reducers/profileReducer/profileReducer";
 
-class ProfileContainer extends React.Component {
-    componentDidMount() {
-        const { router, getProfile, getStatus } = this.props;
+const ProfileContainer = props => {
+    useEffect(() => {
+        const { router, getProfile, getStatus } = props;
         const userId = router.params.id;
         getProfile(userId);
         getStatus(userId);
-    }
+    }, []);
 
-    render() {
-        return (
-            <Profile { ...this.props } />
-        )
-    }
+    return <Profile { ...props } />
 }
 
 const mapStateToProps = (state) => {

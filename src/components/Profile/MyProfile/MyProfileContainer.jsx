@@ -1,4 +1,4 @@
 import WithAuthRedirect from "../../hoc/WithAuthRedirect";
-import { MyProfile } from "./MyProfile";
+import MyProfile from "./MyProfile";
 
 export default WithAuthRedirect(MyProfile)

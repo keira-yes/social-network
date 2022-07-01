@@ -1,7 +1,7 @@
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from "redux-form";
 import { Input } from "../../hoc/FormField/FormField";
 import { maxLength, required } from "../../../utils/validators";
-import styles from '../../hoc/FormField/FormField.module.css';
+import styles from "../../hoc/FormField/FormField.module.css";
 
 const maxLength16 = maxLength(16);
 

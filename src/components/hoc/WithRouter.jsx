@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-function WithRouter(Component) {
+const WithRouter = (Component) => {
     function ComponentWithRouterProp(props) {
         let location = useLocation();
         let navigate = useNavigate();

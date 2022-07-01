@@ -1,7 +1,7 @@
-import classes from './MessagesBlock.module.css';
 import { NavLink } from "react-router-dom";
+import classes from "./MessagesBlock.module.css";
 
-export const MessagesBlock = ({ id, name }) => {
+const MessagesBlock = ({ id, name }) => {
     const path = `/messages/${id}`
     return (
         <div className={`${classes.block} ${classes.active}`}>
@@ -9,3 +9,5 @@ export const MessagesBlock = ({ id, name }) => {
         </div>
     )
 }
+
+export default MessagesBlock;

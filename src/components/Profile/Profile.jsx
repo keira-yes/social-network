@@ -1,8 +1,8 @@
-import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
-import classes from './Profile.module.css';
+import classes from "./Profile.module.css";
 
-export const Profile = ({ profile, status, updateStatus })  => {
+const Profile = ({ profile, status, updateStatus })  => {
     return (
         <div className={classes.profile}>
             <h1>Profile</h1>
@@ -11,3 +11,5 @@ export const Profile = ({ profile, status, updateStatus })  => {
         </div>
     )
 }
+
+export default Profile;

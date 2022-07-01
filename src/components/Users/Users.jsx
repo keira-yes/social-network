@@ -1,9 +1,7 @@
-import React from 'react';
-import { NavLink } from "react-router-dom";
-import classes from './Users.module.css';
-import avatar from "../../assets/images/avatar.png";
+import User from "./User/User";
+import Pagination from "../Pagination/Pagination";
 
-export const Users = (
+const Users = (
     {
         users,
         usersTotal,
@@ -14,47 +12,22 @@ export const Users = (
         setFollowUser
     }) => {
 
-    const pages = [];
-    const pagesCount = Math.ceil(usersTotal / usersPageLimit);
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
     return (
         <div>
             {users.map(user => (
-                <article key={user.id}>
-                    <div>
-                        <NavLink to={`/users/${user.id}`}>
-                            <img src={user.photos.small !== null ? user.photos.small : avatar} alt={user.name} />
-                        </NavLink>
-                        <button
-                            type="button"
-                            disabled={fetchingItems.includes(user.id)}
-                            onClick={() => {setFollowUser(user.followed, user.id)}}
-                        >
-                            {user.followed ? "Unfollow" : "Follow"}
-                        </button>
-                    </div>
-                    <div>
-                        <h3>{user.name}</h3>
-                        <div>{"Country"}</div>
-                        <strong>{user.status}</strong>
-                        <div>{"City"}</div>
-                    </div>
-                </article>
+                <User
+                    key={user.id}
+                    user={user}
+                    fetchingItems={fetchingItems}
+                    setFollowUser={setFollowUser} />
             ))}
-            <div>
-                {pages.map(page => (
-                    <button
-                        type="button"
-                        key={page}
-                        className={page === usersCurrentPage ? classes.active : ''}
-                        onClick={() => handlePageChange(page)}
-                    >
-                        {page}
-                    </button>
-                ))}
-            </div>
+            <Pagination
+                total={usersTotal}
+                pageLimit={usersPageLimit}
+                currentPage={usersCurrentPage}
+                handlePageChange={handlePageChange} />
         </div>
     )
 }
+
+export default Users;

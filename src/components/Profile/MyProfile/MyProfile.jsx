@@ -1,4 +1,4 @@
-export const MyProfile = () => {
+const MyProfile = () => {
     return (
         <div>
             <h1>Profile</h1>
@@ -6,3 +6,5 @@ export const MyProfile = () => {
         </div>
     )
 }
+
+export default MyProfile;

@@ -1,12 +1,8 @@
-import React from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
-import { Users } from "./Users";
-import { Preloader } from "../Preloader/Preloader";
-import {
-    fetchUsers,
-    setCurrentPage,
-    setFollowUser
-} from "../../redux/reducers/usersReducer";
+import Users from "./Users";
+import Preloader from "../Preloader/Preloader";
+import { fetchUsers, setCurrentPage, setFollowUser } from "../../redux/reducers/usersReducer";
 import {
     selectFetchingItems,
     selectIsLoading,
@@ -16,33 +12,40 @@ import {
     selectUsersTotal
 } from "../../redux/selectors/usersSelector";
 
-class UsersContainer extends React.Component {
-    componentDidMount() {
-        const { fetchUsers, usersCurrentPage, usersPageLimit } = this.props;
+const UsersContainer = (
+    {
+        users,
+        usersTotal,
+        fetchUsers,
+        usersCurrentPage,
+        usersPageLimit,
+        setCurrentPage,
+        isLoading,
+        fetchingItems,
+        setFollowUser
+    }) => {
+
+    useEffect(() => {
         fetchUsers(usersCurrentPage, usersPageLimit);
-    }
+    }, [usersCurrentPage, usersPageLimit])
 
-    handlePageChange = (page) => {
-        const { setCurrentPage, fetchUsers, usersPageLimit } = this.props;
-
+    const handlePageChange = page => {
         setCurrentPage(page);
         fetchUsers(page, usersPageLimit);
     }
 
-    render() {
-        return <>
-            {this.props.isLoading && <Preloader />}
-            <Users
-                users={this.props.users}
-                usersTotal={this.props.usersTotal}
-                usersPageLimit={this.props.usersPageLimit}
-                usersCurrentPage={this.props.usersCurrentPage}
-                handlePageChange={this.handlePageChange}
-                fetchingItems={this.props.fetchingItems}
-                setFollowUser={this.props.setFollowUser}
-            />
-        </>
-    }
+    return <>
+        {isLoading && <Preloader />}
+        <Users
+            users={users}
+            usersTotal={usersTotal}
+            usersPageLimit={usersPageLimit}
+            usersCurrentPage={usersCurrentPage}
+            handlePageChange={handlePageChange}
+            fetchingItems={fetchingItems}
+            setFollowUser={setFollowUser}
+        />
+    </>
 }
 
 const mapStateToProps = (state) => {
