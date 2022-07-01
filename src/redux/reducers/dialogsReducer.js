@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'ADD_MESSAGE';
+const ADD_MESSAGE = 'dialogs/ADD_MESSAGE';
 
 const initialState = {
     dialogs: [
@@ -27,7 +27,6 @@ export const dialogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messages: [...state.messages, newPost],
-                newMessageText: ''
             }
         default:
             return state;
