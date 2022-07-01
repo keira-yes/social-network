@@ -1,7 +1,7 @@
 import classes from './Sidebar.module.css';
 import { NavLink } from "react-router-dom";
 
-export const Sidebar = () => {
+const Sidebar = () => {
     return (
         <aside className={classes.sidebar}>
             <nav className="nav">
@@ -35,3 +35,5 @@ export const Sidebar = () => {
         </aside>
     )
 }
+
+export default Sidebar;
