@@ -1,8 +1,8 @@
-import { authAPI } from "../../api/authAPI";
 import { stopSubmit } from "redux-form";
+import { authAPI } from "../../api/authAPI";
 
-const SET_AUTH_DATA = 'SET_AUTH_DATA';
-const RESET_AUTH_DATA = 'RESET_AUTH_DATA';
+const SET_AUTH_DATA = 'auth/SET_AUTH_DATA';
+const RESET_AUTH_DATA = 'auth/RESET_AUTH_DATA';
 
 const initialState = {
     authData: null,
@@ -28,29 +28,27 @@ export const resetAuthData = () => {
     return { type: RESET_AUTH_DATA }
 }
 
-export const getAuthData = () => dispatch => {
-    return authAPI.getAuthData().then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setAuthData(data));
-        }
-    });
+export const getAuthData = () => async dispatch => {
+    const data = await authAPI.getAuthData();
+    if (data.resultCode === 0) {
+        dispatch(setAuthData(data));
+    }
+    return data;
 }
 
-export const logIn = (email, password, rememberMe = false) => dispatch => {
-    authAPI.login(email, password, rememberMe).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(getAuthData());
-        } else {
-            const errorMessage = data.messages.length ? data.messages[0] : 'Something went wrong...';
-            dispatch(stopSubmit("login", {_error: errorMessage}));
-        }
-    });
+export const logIn = (email, password, rememberMe = false) => async dispatch => {
+    const data = await authAPI.login(email, password, rememberMe);
+    if (data.resultCode === 0) {
+        dispatch(getAuthData());
+    } else {
+        const errorMessage = data.messages.length ? data.messages[0] : 'Something went wrong...';
+        dispatch(stopSubmit("login", {_error: errorMessage}));
+    }
 }
 
-export const logOut = () => dispatch => {
-    authAPI.logout().then(data => {
-        if (data.resultCode === 0) {
-            dispatch(resetAuthData());
-        }
-    });
+export const logOut = () => async dispatch => {
+    const data = await authAPI.logout();
+    if (data.resultCode === 0) {
+        dispatch(resetAuthData());
+    }
 }
