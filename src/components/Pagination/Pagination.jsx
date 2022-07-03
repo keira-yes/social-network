@@ -13,7 +13,7 @@ const Pagination = ({ total, pageLimit, paginationLimit = 10, currentPage, handl
     const rightBorder = chunkNumber * paginationLimit;
 
     useEffect(() => {
-        setChunkNumber();
+        setChunkNumber(Math.ceil(currentPage / paginationLimit));
     }, [currentPage]);
 
     return (
