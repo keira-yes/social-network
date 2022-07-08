@@ -32,11 +32,11 @@
   "static/media/youtube.svg": "/social-network/static/media/youtube.5f30aa80.svg",
   "static/media/github.svg": "/social-network/static/media/github.e3ae8d33.svg",
   "static/media/link.svg": "/social-network/static/media/link.115f6451.svg",
-  "static/css/main.772eee49.chunk.css.map": "/social-network/static/css/main.772eee49.chunk.css.map",
   "static/css/4.3066dd36.chunk.css.map": "/social-network/static/css/4.3066dd36.chunk.css.map",
   "static/css/5.be594417.chunk.css.map": "/social-network/static/css/5.be594417.chunk.css.map",
-  "static/css/6.1cfdc28c.chunk.css.map": "/social-network/static/css/6.1cfdc28c.chunk.css.map",
+  "static/css/main.772eee49.chunk.css.map": "/social-network/static/css/main.772eee49.chunk.css.map",
   "static/css/7.6846e246.chunk.css.map": "/social-network/static/css/7.6846e246.chunk.css.map",
+  "static/css/6.1cfdc28c.chunk.css.map": "/social-network/static/css/6.1cfdc28c.chunk.css.map",
   "index.html": "/social-network/index.html",
   "precache-manifest.1c0ff1088415f4a4cd815fbd7a659ade.js": "/social-network/precache-manifest.1c0ff1088415f4a4cd815fbd7a659ade.js",
   "service-worker.js": "/social-network/service-worker.js"
