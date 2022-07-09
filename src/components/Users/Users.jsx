@@ -1,3 +1,4 @@
+import React from 'react';
 import User from "./User/User";
 import Pagination from "../Pagination/Pagination";
 

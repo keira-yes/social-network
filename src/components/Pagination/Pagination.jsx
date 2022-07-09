@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Pgination.module.css";
 
 const Pagination = ({ total, pageLimit, paginationLimit = 10, currentPage, handlePageChange }) => {

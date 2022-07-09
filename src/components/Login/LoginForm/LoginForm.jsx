@@ -1,3 +1,4 @@
+import React from 'react';
 import { Field, reduxForm } from "redux-form";
 import { Input } from "../../hoc/FormField/FormField";
 import { maxLength, required } from "../../../utils/validators";

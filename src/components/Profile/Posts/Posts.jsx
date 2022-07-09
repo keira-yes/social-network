@@ -1,3 +1,4 @@
+import React from 'react';
 import PostForm from "../PostForm/PostForm";
 import Post from "../Post/Post";
 import classes from "./Posts.module.css";

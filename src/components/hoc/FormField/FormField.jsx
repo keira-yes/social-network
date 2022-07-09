@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from "./FormField.module.css";
 
 const FormField = Component => ({input, meta, ...props}) => {

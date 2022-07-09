@@ -1,3 +1,4 @@
+import React from 'react';
 import Preloader from "../../Preloader/Preloader";
 import facebookImg from "../../../assets/images/facebook.svg";
 import webImg from "../../../assets/images/web.svg";

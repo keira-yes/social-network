@@ -1,3 +1,4 @@
+import React from 'react';
 import MessagesBlock from "./MessagesBlock/MessagesBlock";
 import Message from "./Message/Message";
 import MessageForm from "./MessageForm/MessageForm";

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../../hoc/FormField/FormField";
 import { required, maxLength } from "../../../utils/validators";

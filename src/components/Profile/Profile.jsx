@@ -1,3 +1,4 @@
+import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
 import classes from "./Profile.module.css";

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ProfileStatus = ({ status, updateStatus }) => {
     const [editMode, setEditMode] = useState(false);
