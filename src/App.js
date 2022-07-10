@@ -22,7 +22,7 @@ const App = ({ initializeApp, isInitialized }) => {
     if (!isInitialized) return <Preloader />
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className="app">
                 <div className="container">
                     <HeaderContainer />
