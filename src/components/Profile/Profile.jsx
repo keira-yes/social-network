@@ -7,7 +7,7 @@ const Profile = ({ profile, status, updateStatus })  => {
     return (
         <div className={classes.profile}>
             <h1>Profile</h1>
-            <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} />
+            <ProfileInfo profile={profile} status={status} />
             <PostsContainer />
         </div>
     )
