@@ -5,7 +5,7 @@ import ProfileStatus from "../ProfileInfo/ProfileStatus/ProfileStatus";
 import SocialMedia from "../ProfileInfo/SocialMedia/SocialMedia";
 import MyProfileForm from "../MyProfileForm/MyProfileForm";
 
-const MyProfile = ({ profile, status, updateAvatar, updateStatus, submitForm }) => {
+const MyProfile = ({ profile, status, updateAvatar, updateStatus, editProfileInfo }) => {
     const [editMode, setEditMode] = useState(false);
 
     const onEditMode = () => {
@@ -16,6 +16,11 @@ const MyProfile = ({ profile, status, updateAvatar, updateStatus, submitForm }) 
         if (e.target.files[0]) {
             updateAvatar(e.target.files[0]);
         }
+    }
+
+    const submitForm = formData => {
+        editProfileInfo(formData);
+        setEditMode(false);
     }
 
     if (!profile) return <Preloader />
@@ -29,15 +34,13 @@ const MyProfile = ({ profile, status, updateAvatar, updateStatus, submitForm }) 
         contacts
     } = profile;
 
-    console.log(profile)
-
     return (
         <div>
             <img src={photos.large ? photos.large : avatar} alt={fullName} />
             <label><input type="file" onChange={handleChangeFile} /></label>
             <ProfileStatus status={status} updateStatus={updateStatus} />
             {editMode ?
-                <MyProfileForm initialValues={profile} onSubmit={submitForm} /> :
+                <MyProfileForm initialValues={profile} onSubmit={submitForm} contacts={contacts} /> :
                 <div>
                     <button type="button" onClick={onEditMode}>Edit about information</button>
                     <h2>{fullName}</h2>

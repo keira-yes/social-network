@@ -6,11 +6,7 @@ import MyProfile from "./MyProfile";
 import { updateAvatar, getProfile, getStatus, updateStatus, editProfileInfo } from "../../../redux/reducers/profileReducer/profileReducer";
 
 const MyProfileContainer = props => {
-    const { authData, getProfile, getStatus, editProfileInfo } = props;
-
-    const submitForm = formData => {
-        editProfileInfo(formData);
-    }
+    const { authData, getProfile, getStatus } = props;
 
     useEffect(() => {
         const userId = authData.data.id;
@@ -18,7 +14,7 @@ const MyProfileContainer = props => {
         getStatus(userId);
     }, []);
 
-    return <MyProfile { ...props } submitForm={submitForm} />
+    return <MyProfile { ...props } />
 }
 
 const mapStateToProps = (state) => {
