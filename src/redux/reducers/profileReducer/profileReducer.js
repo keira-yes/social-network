@@ -1,4 +1,5 @@
 import { profileAPI } from "../../../api/profileAPI";
+import {toggleFollowUser} from "../usersReducer";
 
 const SET_PROFILE = 'profile/SET_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
@@ -79,4 +80,11 @@ export const setAvatar = payload => {
 export const updateAvatar = photo => async dispatch => {
     const response = await profileAPI.updateAvatar(photo);
     dispatch(setAvatar(response.data.photos));
+}
+
+export const editProfileInfo = profile => async dispatch => {
+    const response = await profileAPI.updateProfile(profile);
+    if (response.resultCode === 0) {
+        // dispatch(getProfile(id));
+    }
 }

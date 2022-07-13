@@ -11,6 +11,7 @@ const MessageForm = ({ handleSubmit }) => {
             <div>
                 <label htmlFor="message">Enter Message</label>
                 <Field
+                    id="message"
                     name="message"
                     component={Textarea}
                     validate={[required, maxLength20]}

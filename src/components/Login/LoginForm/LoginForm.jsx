@@ -12,6 +12,7 @@ const LoginForm = ({ handleSubmit, error }) => {
             <div>
                 <label htmlFor="login">Login</label>
                 <Field
+                    id="login"
                     name="login"
                     component={Input}
                     type="text"
@@ -21,6 +22,7 @@ const LoginForm = ({ handleSubmit, error }) => {
             <div>
                 <label htmlFor="password">Password</label>
                 <Field
+                    id="password"
                     name="password"
                     component={Input}
                     type="password"

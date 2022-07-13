@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import WithAuthRedirect from "../../hoc/WithAuthRedirect";
 import MyProfile from "./MyProfile";
-import { updateAvatar, getProfile, getStatus, updateStatus } from "../../../redux/reducers/profileReducer/profileReducer";
+import { updateAvatar, getProfile, getStatus, updateStatus, editProfileInfo } from "../../../redux/reducers/profileReducer/profileReducer";
 
 const MyProfileContainer = props => {
-    const { authData, getProfile, getStatus } = props;
+    const { authData, getProfile, getStatus, editProfileInfo } = props;
+
+    const submitForm = formData => {
+        editProfileInfo(formData);
+    }
 
     useEffect(() => {
         const userId = authData.data.id;
@@ -14,7 +18,7 @@ const MyProfileContainer = props => {
         getStatus(userId);
     }, []);
 
-    return <MyProfile { ...props } />
+    return <MyProfile { ...props } submitForm={submitForm} />
 }
 
 const mapStateToProps = (state) => {
@@ -26,6 +30,6 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { updateAvatar, getProfile, getStatus, updateStatus }),
+    connect(mapStateToProps, { updateAvatar, getProfile, getStatus, updateStatus, editProfileInfo }),
     WithAuthRedirect
 )(MyProfileContainer);

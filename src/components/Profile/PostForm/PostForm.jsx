@@ -11,6 +11,7 @@ const PostForm = ({ handleSubmit }) => {
             <div>
                 <label htmlFor="post">Enter Post</label>
                 <Field
+                    id="post"
                     name="post"
                     component={Textarea}
                     validate={[required, maxLength10]}

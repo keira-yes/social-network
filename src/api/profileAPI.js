@@ -21,5 +21,10 @@ export const profileAPI = {
         formData.append('image', photo);
         const { data } = await instance.put('profile/photo', formData);
         return data;
-    }
+    },
+
+    async updateProfile(profile) {
+        const { data } = await instance.put('profile', profile);
+        return data;
+    },
 }
