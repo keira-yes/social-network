@@ -6,7 +6,7 @@ import styles from "../../hoc/FormField/FormField.module.css";
 
 const maxLength16 = maxLength(16);
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captcha }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -37,6 +37,9 @@ const LoginForm = ({ handleSubmit, error }) => {
                 />
                 <label htmlFor="rememberMe">Remember me</label>
             </div>
+            {captcha && <div>
+                <img src={captcha} alt="Captcha"/>
+            </div>}
             {error && <div className={styles.errorWindow}>{error}</div>}
             <button type="submit">Login</button>
         </form>
