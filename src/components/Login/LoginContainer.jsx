@@ -5,7 +5,8 @@ import { logIn } from "../../redux/reducers/authReducer";
 
 const LoginContainer = ({ isAuth, logIn, captcha }) => {
     const submitForm = formData => {
-        logIn(formData.login, formData.password, formData.rememberMe);
+        const { login, password, rememberMe, captcha } = formData;
+        logIn(login, password, rememberMe, captcha);
     }
     return <Login isAuth={isAuth} submitForm={submitForm} captcha={captcha} />
 }

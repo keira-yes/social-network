@@ -6,8 +6,8 @@ export const authAPI = {
         return data;
     },
 
-    async login(email, password, rememberMe) {
-        const { data } = await instance.post('auth/login', {email, password, rememberMe});
+    async login(email, password, rememberMe, captcha) {
+        const { data } = await instance.post('auth/login', {email, password, rememberMe, captcha});
         return data;
     },
 

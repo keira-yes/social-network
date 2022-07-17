@@ -49,12 +49,11 @@ export const getCaptcha = () => async dispatch => {
     dispatch(setCaptcha(data.url));
 }
 
-export const logIn = (email, password, rememberMe = false) => async dispatch => {
-    const data = await authAPI.login(email, password, rememberMe);
+export const logIn = (email, password, rememberMe = false, captcha) => async dispatch => {
+    const data = await authAPI.login(email, password, rememberMe, captcha);
     if (data.resultCode === 0) {
         dispatch(getAuthData());
     } else {
-
         if (data.resultCode === 10) {
             dispatch(getCaptcha());
         }

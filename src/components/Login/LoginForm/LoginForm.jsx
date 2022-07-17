@@ -39,6 +39,16 @@ const LoginForm = ({ handleSubmit, error, captcha }) => {
             </div>
             {captcha && <div>
                 <img src={captcha} alt="Captcha"/>
+                <div>
+                    <label htmlFor="captcha">Enter captcha</label>
+                    <Field
+                        id="captcha"
+                        name="captcha"
+                        component={Input}
+                        type="text"
+                        validate={required}
+                    />
+                </div>
             </div>}
             {error && <div className={styles.errorWindow}>{error}</div>}
             <button type="submit">Login</button>
