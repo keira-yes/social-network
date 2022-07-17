@@ -1,9 +1,10 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import { connect } from "react-redux";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Preloader from "./components/Preloader/Preloader";
+import NotFound from "./components/NotFound/NotFound";
 import { initializeApp } from "./redux/reducers/appReducer";
 import "./App.css";
 
@@ -30,26 +31,13 @@ const App = ({ initializeApp, isInitialized }) => {
                     <main className="main">
                         <Suspense fallback={<Preloader />}>
                             <Routes>
-                                <Route
-                                    path="profile"
-                                    element={<MyProfileContainer />}
-                                />
-                                <Route
-                                    path="messages"
-                                    element={<MessagesContainer />}
-                                />
-                                <Route
-                                    path="users"
-                                    element={<UsersContainer />}
-                                />
-                                <Route
-                                    path="users/:id"
-                                    element={<ProfileContainer />}
-                                />
-                                <Route
-                                    path="login"
-                                    element={<LoginContainer />}
-                                />
+                                <Route path="/" element={<Navigate to="/profile" />} />
+                                <Route path="profile" element={<MyProfileContainer />} />
+                                <Route path="messages" element={<MessagesContainer />} />
+                                <Route path="users" element={<UsersContainer />} />
+                                <Route path="users/:id" element={<ProfileContainer />} />
+                                <Route path="login" element={<LoginContainer />} />
+                                <Route path='*' element={<NotFound />} />
                             </Routes>
                         </Suspense>
                     </main>
