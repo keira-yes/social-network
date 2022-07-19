@@ -1,4 +1,5 @@
 import { profileAPI } from "../../../api/profileAPI";
+import {PhotosType, ProfileType} from "../../../types/types";
 
 const SET_PROFILE = 'profile/SET_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
@@ -6,16 +7,24 @@ const ADD_POST = 'profile/ADD_POST';
 const DELETE_POST = 'profile/DELETE_POST';
 const SET_AVATAR = 'profile/SET_AVATAR';
 
+type PostType = {
+    id: number
+    message: string
+    likes: number
+}
+
 export const initialState = {
-    profile: null,
+    profile: null as ProfileType | null,
     status: '',
     posts: [
         {id: 1, message: "Hello World!", likes: 5},
         {id: 2, message: "My first post...", likes: 12}
-    ]
+    ] as Array<PostType>
 }
 
-export const profileReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+export const profileReducer = (state = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
         case SET_PROFILE:
@@ -41,47 +50,72 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = payload => {
+type AddPostType = {
+    type: typeof ADD_POST
+    payload: string
+}
+
+export const addPost = (payload: string): AddPostType => {
     return { type: ADD_POST, payload };
 }
 
-export const deletePost = payload => {
+type DeletePostType = {
+    type: typeof DELETE_POST
+    payload: number
+}
+
+export const deletePost = (payload: number): DeletePostType => {
     return { type: DELETE_POST, payload };
 }
 
-export const setProfile = payload => {
+type SetProfileType = {
+    type: typeof SET_PROFILE
+    payload: ProfileType
+}
+
+export const setProfile = (payload: ProfileType): SetProfileType => {
     return { type: SET_PROFILE, payload }
 }
 
-export const getProfile = id => async dispatch => {
+export const getProfile = (id: number) => async (dispatch: any) => {
     const data = await profileAPI.getProfile(id);
     dispatch(setProfile(data));
 }
 
-export const setStatus = payload => {
+type SetStatusType = {
+    type: typeof SET_STATUS
+    payload: string
+}
+
+export const setStatus = (payload: string): SetStatusType => {
     return { type: SET_STATUS, payload }
 }
 
-export const getStatus = id => async dispatch => {
+export const getStatus = (id: number) => async (dispatch: any) => {
     const data = await profileAPI.getStatus(id);
     dispatch(setStatus(data));
 }
 
-export const updateStatus = status => async dispatch => {
+export const updateStatus = (status:string) => async (dispatch: any) => {
     await profileAPI.updateStatus(status);
     dispatch(setStatus(status));
 }
 
-export const setAvatar = payload => {
+type SetAvatarType = {
+    type: typeof SET_AVATAR
+    payload: PhotosType
+}
+
+export const setAvatar = (payload: PhotosType): SetAvatarType => {
     return { type: SET_AVATAR, payload }
 }
 
-export const updateAvatar = photo => async dispatch => {
+export const updateAvatar = (photo: string) => async (dispatch: any) => {
     const response = await profileAPI.updateAvatar(photo);
     dispatch(setAvatar(response.data.photos));
 }
 
-export const editProfileInfo = profile => async (dispatch, getState) => {
+export const editProfileInfo = (profile: ProfileType) => async (dispatch: any, getState: any) => {
     const response = await profileAPI.updateProfile(profile);
     if (response.resultCode === 0) {
         dispatch(getProfile(getState().authReducer.authData.data.id));
