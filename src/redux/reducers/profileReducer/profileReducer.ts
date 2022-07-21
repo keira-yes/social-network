@@ -44,7 +44,7 @@ export const profileReducer = (state = initialState, action: any): InitialStateT
                 posts: state.posts.filter(item => item.id !== action.payload)
             }
         case SET_AVATAR:
-            return { ...state, profile: { ...state.profile, photos: action.payload } }
+            return { ...state, profile: { ...state.profile, photos: action.payload } as ProfileType }
         default:
             return state;
     }

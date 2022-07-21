@@ -15,10 +15,10 @@ export type SocialMediaType = {
 }
 
 export type ProfileType = {
-    userId?: number
-    lookingForAJob?: boolean
-    lookingForAJobDescription?: string
-    fullName?: string
-    contacts?: SocialMediaType
-    photos?: PhotosType
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: SocialMediaType
+    photos: PhotosType
 }
