@@ -4,7 +4,7 @@ import classes from "./Pgination.module.css";
 type PropsType = {
     total: number
     pageLimit: number
-    paginationLimit: number
+    paginationLimit?: number
     currentPage: number
     handlePageChange: (page: number) => void
 }

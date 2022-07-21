@@ -1,8 +1,19 @@
 import React from 'react';
 import User from "./User/User";
 import Pagination from "../Pagination/Pagination";
+import { UserType } from "../../types/types";
 
-const Users = (
+type PropsType = {
+    users: Array<UserType>
+    usersTotal: number
+    usersPageLimit: number
+    usersCurrentPage: number
+    handlePageChange: () => void
+    fetchingItems: () => void
+    setFollowUser: () => void
+}
+
+const Users: React.FC<PropsType> = (
     {
         users,
         usersTotal,
