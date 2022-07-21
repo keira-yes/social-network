@@ -11,8 +11,22 @@ import {
     selectUsersPageLimit,
     selectUsersTotal
 } from "../../redux/selectors/usersSelector";
+import { UserType } from "../../types/types";
+import { AppStateType } from "../../redux/store";
 
-const UsersContainer = (
+type PropsType = {
+    users: Array<UserType>
+    usersTotal: number
+    usersPageLimit: number
+    usersCurrentPage: number
+    isLoading: boolean
+    fetchUsers: (usersCurrentPage: number, usersPageLimit: number) => void
+    setCurrentPage: (page: number) => void
+    fetchingItems: () => void
+    setFollowUser: () => void
+}
+
+const UsersContainer: React.FC<PropsType> = (
     {
         users,
         usersTotal,
@@ -29,7 +43,7 @@ const UsersContainer = (
         fetchUsers(usersCurrentPage, usersPageLimit);
     }, [usersCurrentPage, usersPageLimit])
 
-    const handlePageChange = page => {
+    const handlePageChange = (page: number) => {
         setCurrentPage(page);
         fetchUsers(page, usersPageLimit);
     }
@@ -48,7 +62,7 @@ const UsersContainer = (
     </>
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         users: selectUsers(state),
         usersTotal: selectUsersTotal(state),

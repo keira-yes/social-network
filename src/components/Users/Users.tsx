@@ -8,7 +8,7 @@ type PropsType = {
     usersTotal: number
     usersPageLimit: number
     usersCurrentPage: number
-    handlePageChange: () => void
+    handlePageChange: (page: number) => void
     fetchingItems: () => void
     setFollowUser: () => void
 }
