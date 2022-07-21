@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Pgination.module.css";
 
-const Pagination = ({ total, pageLimit, paginationLimit = 10, currentPage, handlePageChange }) => {
+type PropsType = {
+    total: number
+    pageLimit: number
+    paginationLimit: number
+    currentPage: number
+    handlePageChange: (page: number) => void
+}
+
+const Pagination: React.FC<PropsType> = ({ total, pageLimit, paginationLimit = 10, currentPage, handlePageChange }) => {
     const [chunkNumber, setChunkNumber] = useState(1);
     const pages = [];
     const pagesCount = Math.ceil(total / pageLimit);
