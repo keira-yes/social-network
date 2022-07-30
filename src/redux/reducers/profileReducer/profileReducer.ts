@@ -96,7 +96,7 @@ export const getStatus = (id: number) => async (dispatch: any) => {
     dispatch(setStatus(data));
 }
 
-export const updateStatus = (status:string) => async (dispatch: any) => {
+export const updateStatus = (status: string) => async (dispatch: any) => {
     await profileAPI.updateStatus(status);
     dispatch(setStatus(status));
 }
