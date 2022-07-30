@@ -14,17 +14,22 @@ import {
 import { UserType } from "../../types/types";
 import { AppStateType } from "../../redux/store";
 
-type PropsType = {
+type MapStatePropsType = {
     users: Array<UserType>
     usersTotal: number
     usersPageLimit: number
     usersCurrentPage: number
     isLoading: boolean
+    fetchingItems: Array<Number>
+}
+
+type MapDispatchPropsType = {
     fetchUsers: (usersCurrentPage: number, usersPageLimit: number) => void
     setCurrentPage: (page: number) => void
-    fetchingItems: () => void
-    setFollowUser: () => void
+    setFollowUser: (followed: boolean, id: number) => void
 }
+
+type PropsType = MapStatePropsType & MapDispatchPropsType;
 
 const UsersContainer: React.FC<PropsType> = (
     {
@@ -62,7 +67,7 @@ const UsersContainer: React.FC<PropsType> = (
     </>
 }
 
-const mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: selectUsers(state),
         usersTotal: selectUsersTotal(state),
@@ -72,6 +77,6 @@ const mapStateToProps = (state: AppStateType) => {
         fetchingItems: selectFetchingItems(state)
     }
 }
-
-export default connect(mapStateToProps,
+// TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps,
     { fetchUsers, setCurrentPage, setFollowUser })(UsersContainer);

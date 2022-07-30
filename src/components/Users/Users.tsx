@@ -9,8 +9,8 @@ type PropsType = {
     usersPageLimit: number
     usersCurrentPage: number
     handlePageChange: (page: number) => void
-    fetchingItems: () => void
-    setFollowUser: () => void
+    fetchingItems: Array<Number>
+    setFollowUser: (followed: boolean, id: number) => void
 }
 
 const Users: React.FC<PropsType> = (
