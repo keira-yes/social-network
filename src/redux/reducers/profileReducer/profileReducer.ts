@@ -1,5 +1,5 @@
 import { profileAPI } from "../../../api/profileAPI";
-import { PhotosType, ProfileType } from "../../../types/types";
+import { PhotosType, ProfileType, ResultCode } from "../../../types/types";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../../store";
 
@@ -122,7 +122,7 @@ export const updateAvatar = (photo: string): ThunkType => async (dispatch) => {
 
 export const editProfileInfo = (profile: ProfileType): ThunkType => async (dispatch, getState: any) => {
     const response = await profileAPI.updateProfile(profile);
-    if (response.resultCode === 0) {
+    if (response.resultCode === ResultCode.Success) {
         dispatch(getProfile(getState().authReducer.authData.data.id));
     }
 }

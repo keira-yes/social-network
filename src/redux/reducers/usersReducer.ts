@@ -1,5 +1,5 @@
 import { usersAPI } from "../../api/usersAPI";
-import { UserType } from "../../types/types";
+import {ResultCode, UserType} from "../../types/types";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../store";
 
@@ -123,7 +123,7 @@ export const setFollowUser = (followed: boolean, id: number): ThunkType => async
     dispatch(setIsFetching(true, id));
     const action = followed ? usersAPI.unFollowUser : usersAPI.followUser;
     const data = await action(id);
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCode.Success) {
         dispatch(toggleFollowUser(id));
     }
     dispatch(setIsFetching(false, id));
