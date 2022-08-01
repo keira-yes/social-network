@@ -20,7 +20,7 @@ type LoginData = {
 }
 
 type LogOutData = {
-    data: any
+    data: object
     resultCode: ResultCode
     messages: Array<string>
 }
