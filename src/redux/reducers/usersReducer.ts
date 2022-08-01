@@ -54,6 +54,7 @@ export const usersReducer = (state = initialState, action: ActionType): InitialS
 }
 
 type ActionType = SetIsLoadingType | SetUsersType | SetUsersTotalType | ToggleFollowUserType | SetCurrentPageType | SetIsFetchingType;
+type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionType>;
 
 type SetIsLoadingType = {
     type: typeof SET_IS_LOADING
@@ -109,8 +110,6 @@ type SetIsFetchingType = {
 export const setIsFetching = (isFetching: boolean, id: number): SetIsFetchingType => {
     return { type: SET_IS_FETCHING, isFetching, id };
 }
-
-type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionType>;
 
 export const fetchUsers = (usersCurrentPage: number, usersPageLimit: number): ThunkType => async (dispatch) => {
     dispatch(setIsLoading(true));

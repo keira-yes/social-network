@@ -1,5 +1,7 @@
 import { stopSubmit } from "redux-form";
 import { authAPI } from "../../api/authAPI";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "../store";
 
 const SET_AUTH_DATA = 'auth/SET_AUTH_DATA';
 const RESET_AUTH_DATA = 'auth/RESET_AUTH_DATA';
@@ -23,7 +25,7 @@ const initialState: InitialStateType = {
     captcha: null
 }
 
-export const authReducer = (state = initialState, action: any): InitialStateType => {
+export const authReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case SET_AUTH_DATA:
             return { ...state, authData: action.payload, isAuth: true }
@@ -35,6 +37,9 @@ export const authReducer = (state = initialState, action: any): InitialStateType
             return state;
     }
 }
+
+type ActionType = SetAuthDataType | ResetAuthDataType | SetCaptchaType;
+type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionType>;
 
 type SetAuthDataType = {
     type: typeof SET_AUTH_DATA
@@ -53,7 +58,7 @@ export const resetAuthData = (): ResetAuthDataType => {
     return { type: RESET_AUTH_DATA }
 }
 
-export const getAuthData = () => async (dispatch: any) => {
+export const getAuthData = (): ThunkType => async (dispatch) => {
     const data = await authAPI.getAuthData();
     if (data.resultCode === 0) {
         dispatch(setAuthData(data));
@@ -70,12 +75,12 @@ export const setCaptcha = (payload: string): SetCaptchaType => {
     return { type: SET_CAPTCHA, payload }
 }
 
-export const getCaptcha = () => async (dispatch: any) => {
+export const getCaptcha = (): ThunkType => async (dispatch) => {
     const data = await authAPI.getCaptcha();
     dispatch(setCaptcha(data.url));
 }
 
-export const logIn = (email: string, password: string, rememberMe = false, captcha: string) => async (dispatch: any) => {
+export const logIn = (email: string, password: string, rememberMe = false, captcha: string): ThunkType => async (dispatch) => {
     const data = await authAPI.login(email, password, rememberMe, captcha);
     if (data.resultCode === 0) {
         dispatch(getAuthData());
@@ -88,7 +93,7 @@ export const logIn = (email: string, password: string, rememberMe = false, captc
     }
 }
 
-export const logOut = () => async (dispatch: any) => {
+export const logOut = (): ThunkType => async (dispatch) => {
     const data = await authAPI.logout();
     if (data.resultCode === 0) {
         dispatch(resetAuthData());
