@@ -31,6 +31,12 @@ export type UserType = {
     followed: boolean
 }
 
+export type UpdateType = {
+    resultCode: ResultCode
+    messages: Array<string>,
+    data: object
+}
+
 export enum ResultCode {
     Success = 0,
     Error = 1,

@@ -1,5 +1,5 @@
 import { instance } from "./instance";
-import { ResultCode } from "../types/types";
+import { ResultCode, UpdateType } from "../types/types";
 
 type AuthData = {
     data: {
@@ -19,12 +19,6 @@ type LoginData = {
     messages: Array<string>
 }
 
-type LogOutData = {
-    data: object
-    resultCode: ResultCode
-    messages: Array<string>
-}
-
 export const authAPI = {
     async getAuthData() {
         const { data } = await instance.get<AuthData>('auth/me');
@@ -37,7 +31,7 @@ export const authAPI = {
     },
 
     async logout() {
-        const { data } = await instance.delete<LogOutData>('auth/login');
+        const { data } = await instance.delete<UpdateType>('auth/login');
         return data;
     },
 

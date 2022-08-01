@@ -1,11 +1,5 @@
 import { instance } from "./instance";
-import { PhotosType, ProfileType, ResultCode } from "../types/types";
-
-type UpdateType = {
-    resultCode: ResultCode
-    messages: Array<string>,
-    data: object
-}
+import { PhotosType, ProfileType, ResultCode, UpdateType } from "../types/types";
 
 type UpdateAvatarType = {
     data: PhotosType
