@@ -1,5 +1,7 @@
 import { usersAPI } from "../../api/usersAPI";
 import { UserType } from "../../types/types";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "../store";
 
 const SET_USERS = 'users/SET_USERS';
 const SET_USERS_TOTAL = 'users/SET_USERS_TOTAL';
@@ -19,7 +21,7 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-export const usersReducer = (state = initialState, action: any): InitialStateType => {
+export const usersReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case SET_USERS:
             return { ...state, users: action.payload }
@@ -50,6 +52,8 @@ export const usersReducer = (state = initialState, action: any): InitialStateTyp
             return state;
     }
 }
+
+type ActionType = SetIsLoadingType | SetUsersType | SetUsersTotalType | ToggleFollowUserType | SetCurrentPageType | SetIsFetchingType;
 
 type SetIsLoadingType = {
     type: typeof SET_IS_LOADING
@@ -106,7 +110,9 @@ export const setIsFetching = (isFetching: boolean, id: number): SetIsFetchingTyp
     return { type: SET_IS_FETCHING, isFetching, id };
 }
 
-export const fetchUsers = (usersCurrentPage: number, usersPageLimit: number) => async (dispatch: any) => {
+type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionType>;
+
+export const fetchUsers = (usersCurrentPage: number, usersPageLimit: number): ThunkType => async (dispatch) => {
     dispatch(setIsLoading(true));
     const data = await usersAPI.getUsers(usersCurrentPage, usersPageLimit);
     dispatch(setIsLoading(false));
@@ -114,7 +120,7 @@ export const fetchUsers = (usersCurrentPage: number, usersPageLimit: number) => 
     dispatch(setUsersTotal(data.totalCount));
 }
 
-export const setFollowUser = (followed: boolean, id: number) => async (dispatch: any) => {
+export const setFollowUser = (followed: boolean, id: number): ThunkType => async (dispatch) => {
     dispatch(setIsFetching(true, id));
     const action = followed ? usersAPI.unFollowUser : usersAPI.followUser;
     const data = await action(id);
