@@ -36,7 +36,7 @@ export const authAPI = {
     },
 
     async getCaptcha() {
-        const { data } = await instance.get<string>('security/get-captcha-url');
+        const { data } = await instance.get('security/get-captcha-url');
         return data;
     }
 }
