@@ -1,6 +1,6 @@
 import { getAuthData } from "./authReducer";
-import {ThunkAction} from "redux-thunk";
-import {AppStateType} from "../store";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "../store";
 
 const SET_INITIALIZED = 'app/SET_INITIALIZED';
 

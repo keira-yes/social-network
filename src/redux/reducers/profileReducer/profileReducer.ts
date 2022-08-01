@@ -1,5 +1,7 @@
 import { profileAPI } from "../../../api/profileAPI";
-import {PhotosType, ProfileType} from "../../../types/types";
+import { PhotosType, ProfileType } from "../../../types/types";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "../../store";
 
 const SET_PROFILE = 'profile/SET_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
@@ -24,7 +26,7 @@ export const initialState = {
 
 type InitialStateType = typeof initialState;
 
-export const profileReducer = (state = initialState, action: any): InitialStateType => {
+export const profileReducer = (state = initialState, action: ActionType): InitialStateType => {
 
     switch (action.type) {
         case SET_PROFILE:
@@ -49,6 +51,9 @@ export const profileReducer = (state = initialState, action: any): InitialStateT
             return state;
     }
 }
+
+type ActionType = AddPostType | DeletePostType | SetProfileType | SetStatusType | SetAvatarType;
+type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionType>;
 
 type AddPostType = {
     type: typeof ADD_POST
@@ -77,7 +82,7 @@ export const setProfile = (payload: ProfileType): SetProfileType => {
     return { type: SET_PROFILE, payload }
 }
 
-export const getProfile = (id: number) => async (dispatch: any) => {
+export const getProfile = (id: number): ThunkType => async (dispatch) => {
     const data = await profileAPI.getProfile(id);
     dispatch(setProfile(data));
 }
@@ -91,12 +96,12 @@ export const setStatus = (payload: string): SetStatusType => {
     return { type: SET_STATUS, payload }
 }
 
-export const getStatus = (id: number) => async (dispatch: any) => {
+export const getStatus = (id: number): ThunkType => async (dispatch) => {
     const data = await profileAPI.getStatus(id);
     dispatch(setStatus(data));
 }
 
-export const updateStatus = (status: string) => async (dispatch: any) => {
+export const updateStatus = (status: string): ThunkType => async (dispatch) => {
     await profileAPI.updateStatus(status);
     dispatch(setStatus(status));
 }
@@ -110,12 +115,12 @@ export const setAvatar = (payload: PhotosType): SetAvatarType => {
     return { type: SET_AVATAR, payload }
 }
 
-export const updateAvatar = (photo: string) => async (dispatch: any) => {
+export const updateAvatar = (photo: string): ThunkType => async (dispatch) => {
     const response = await profileAPI.updateAvatar(photo);
     dispatch(setAvatar(response.data.photos));
 }
 
-export const editProfileInfo = (profile: ProfileType) => async (dispatch: any, getState: any) => {
+export const editProfileInfo = (profile: ProfileType): ThunkType => async (dispatch, getState: any) => {
     const response = await profileAPI.updateProfile(profile);
     if (response.resultCode === 0) {
         dispatch(getProfile(getState().authReducer.authData.data.id));
