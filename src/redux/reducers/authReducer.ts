@@ -83,7 +83,7 @@ export const getCaptcha = (): ThunkType => async (dispatch) => {
     dispatch(setCaptcha(data.url));
 }
 
-export const logIn = (email: string, password: string, rememberMe = false, captcha: string): ThunkType => async (dispatch) => {
+export const logIn = (email: string, password: string, rememberMe = false, captcha: string | null): ThunkType => async (dispatch) => {
     const data = await authAPI.login(email, password, rememberMe, captcha);
     if (data.resultCode === ResultCode.Success) {
         dispatch(getAuthData());

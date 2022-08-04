@@ -37,6 +37,13 @@ export type UpdateType = {
     data: object
 }
 
+export type LoginDataType = {
+    login: string
+    password: string
+    rememberMe: boolean
+    captcha: string | null
+}
+
 export enum ResultCode {
     Success = 0,
     Error = 1,
