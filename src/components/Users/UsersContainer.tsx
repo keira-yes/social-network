@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
-import { fetchUsers, setCurrentPage, setFollowUser } from "../../redux/reducers/usersReducer";
+import { usersActions, fetchUsers, setFollowUser } from "../../redux/reducers/usersReducer";
 import {
     selectFetchingItems,
     selectIsLoading,
@@ -30,6 +30,8 @@ type MapDispatchPropsType = {
 }
 
 type PropsType = MapStatePropsType & MapDispatchPropsType;
+
+const { setCurrentPage } = usersActions;
 
 const UsersContainer: React.FC<PropsType> = (
     {

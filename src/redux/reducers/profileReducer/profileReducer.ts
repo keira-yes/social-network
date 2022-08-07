@@ -115,7 +115,7 @@ export const setAvatar = (payload: PhotosType): SetAvatarType => {
     return { type: SET_AVATAR, payload }
 }
 
-export const updateAvatar = (photo: string): ThunkType => async (dispatch) => {
+export const updateAvatar = (photo: Blob): ThunkType => async (dispatch) => {
     const response = await profileAPI.updateAvatar(photo);
     dispatch(setAvatar(response.data.photos));
 }

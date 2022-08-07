@@ -31,10 +31,10 @@ export type UserType = {
     followed: boolean
 }
 
-export type UpdateType = {
+export type APIResponseType<D={}> = {
     resultCode: ResultCode
     messages: Array<string>,
-    data: object
+    data: D
 }
 
 export type LoginDataType = {

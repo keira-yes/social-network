@@ -1,5 +1,9 @@
 import { instance } from "./instance";
-import { PhotosType, ProfileType, ResultCode, UpdateType } from "../types/types";
+import { PhotosType, ProfileType, APIResponseType } from "../types/types";
+
+type UpdateAvatarResponseType = {
+    photos: PhotosType
+}
 
 export const profileAPI = {
     async getProfile(id: number) {
@@ -13,19 +17,19 @@ export const profileAPI = {
     },
 
     async updateStatus(status: string) {
-        const { data } = await instance.put<UpdateType>('profile/status', { status });
+        const { data } = await instance.put<APIResponseType>('profile/status', { status });
         return data;
     },
 
-    async updateAvatar(photo: any) {
+    async updateAvatar(photo: Blob) {
         const formData = new FormData();
         formData.append('image', photo);
-        const { data } = await instance.put('profile/photo', formData);
+        const { data } = await instance.put<APIResponseType<UpdateAvatarResponseType>>('profile/photo', formData);
         return data;
     },
 
     async updateProfile(profile: ProfileType) {
-        const { data } = await instance.put<UpdateType>('profile', profile);
+        const { data } = await instance.put<APIResponseType>('profile', profile);
         return data;
     },
 }

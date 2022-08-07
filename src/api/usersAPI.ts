@@ -1,5 +1,5 @@
 import { instance } from "./instance";
-import { UpdateType, UserType } from "../types/types";
+import { APIResponseType, UserType } from "../types/types";
 
 type UsersType = {
     items: Array<UserType>
@@ -14,12 +14,12 @@ export const usersAPI = {
     },
 
     async followUser(id: number) {
-        const { data } = await instance.post<UpdateType>(`follow/${id}`);
+        const { data } = await instance.post<APIResponseType>(`follow/${id}`);
         return data;
     },
 
     async unFollowUser(id: number) {
-        const { data } = await instance.delete<UpdateType>(`follow/${id}`);
+        const { data } = await instance.delete<APIResponseType>(`follow/${id}`);
         return data;
     }
 }
