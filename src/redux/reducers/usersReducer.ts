@@ -1,7 +1,6 @@
 import { usersAPI } from "../../api/usersAPI";
 import {ResultCode, UserType} from "../../types/types";
-import { ThunkAction } from "redux-thunk";
-import { ActionsType, AppStateType } from "../store";
+import { ActionsType, DefaultThunkType } from "../store";
 
 const initialState = {
     users: [] as Array<UserType>,
@@ -14,7 +13,7 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 type ActionType = ActionsType<typeof usersActions>;
-type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionType>;
+type ThunkType = DefaultThunkType<ActionType>;
 
 export const usersReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {

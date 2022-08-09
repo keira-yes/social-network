@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'dialogs/ADD_MESSAGE';
+import { ActionsType } from "../store";
 
 type DialogType = {
     id: number
@@ -27,11 +27,12 @@ const initialState = {
 }
 
 type InitialStateType = typeof initialState;
+type ActionType = ActionsType<typeof dialogsActions>;
 
 export const dialogsReducer = (state = initialState, action: ActionType): InitialStateType => {
 
     switch (action.type) {
-        case ADD_MESSAGE:
+        case 'ADD_MESSAGE':
             const newPost = {
                 id: state.messages.length + 1,
                 message: action.payload
@@ -45,13 +46,6 @@ export const dialogsReducer = (state = initialState, action: ActionType): Initia
     }
 }
 
-type ActionType = AddMessageType;
-
-type AddMessageType = {
-    type: typeof ADD_MESSAGE
-    payload: string
-}
-
-export const addMessage = (payload: string): AddMessageType => {
-    return { type: ADD_MESSAGE, payload };
+export const dialogsActions = {
+    addMessage: (payload: string) => ({ type: 'ADD_MESSAGE', payload } as const)
 }
