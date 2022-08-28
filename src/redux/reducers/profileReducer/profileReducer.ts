@@ -1,6 +1,6 @@
 import { profileAPI } from "../../../api/profileAPI";
 import { PhotosType, ProfileType, ResultCode } from "../../../types/types";
-import {ActionsType, DefaultThunkType} from "../../store";
+import { ActionsType, DefaultThunkType } from "../../store";
 
 type PostType = {
     id: number

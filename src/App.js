@@ -10,7 +10,7 @@ import "./App.css";
 
 const MyProfileContainer = lazy(() => import('./components/Profile/MyProfile/MyProfileContainer'));
 const MessagesContainer = lazy(() => import('./components/Messages/MessagesContainer'));
-const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
+const UsersContainer = lazy(() => import('./components/Users/UsersPage'));
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
 const LoginContainer = lazy(() => import('./components/Login/LoginContainer'));
 

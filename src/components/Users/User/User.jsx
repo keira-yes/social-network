@@ -1,8 +1,11 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import avatar from "../../../assets/images/avatar.png";
+import { useDispatch } from "react-redux";
 
 const User = ({ user, fetchingItems, setFollowUser }) => {
+    const dispatch = useDispatch();
+
     return (
         <article key={user.id}>
             <div>
@@ -12,7 +15,7 @@ const User = ({ user, fetchingItems, setFollowUser }) => {
                 <button
                     type="button"
                     disabled={fetchingItems.includes(user.id)}
-                    onClick={() => {setFollowUser(user.followed, user.id)}}
+                    onClick={() => {dispatch(setFollowUser(user.followed, user.id))}}
                 >
                     {user.followed ? "Unfollow" : "Follow"}
                 </button>

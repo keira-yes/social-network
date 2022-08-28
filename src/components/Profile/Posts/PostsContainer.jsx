@@ -8,6 +8,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const { addPost } = profileActions;
-
-export default connect(mapStateToProps, { addPost })(Posts);
+export default connect(mapStateToProps, { addPost: profileActions.addPost })(Posts);

@@ -1,28 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import User from "./User/User";
 import Pagination from "../Pagination/Pagination";
-import { UserType } from "../../types/types";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    selectFetchingItems,
+    selectUsers, selectUsersCurrentPage,
+    selectUsersPageLimit,
+    selectUsersTotal
+} from "../../redux/selectors/usersSelector";
+import { usersActions, fetchUsers, setFollowUser } from "../../redux/reducers/usersReducer";
 
-type PropsType = {
-    users: Array<UserType>
-    usersTotal: number
-    usersPageLimit: number
-    usersCurrentPage: number
-    handlePageChange: (page: number) => void
-    fetchingItems: Array<Number>
-    setFollowUser: (followed: boolean, id: number) => void
-}
+const Users = () => {
+    const users = useSelector(selectUsers);
+    const usersTotal = useSelector(selectUsersTotal);
+    const usersPageLimit = useSelector(selectUsersPageLimit);
+    const usersCurrentPage = useSelector(selectUsersCurrentPage);
+    const fetchingItems = useSelector(selectFetchingItems);
 
-const Users: React.FC<PropsType> = (
-    {
-        users,
-        usersTotal,
-        usersPageLimit,
-        usersCurrentPage,
-        handlePageChange,
-        fetchingItems,
-        setFollowUser
-    }) => {
+    const dispatch = useDispatch();
+
+    const handlePageChange = (page: number) => {
+        dispatch(usersActions.setCurrentPage(page));
+        dispatch<any>(fetchUsers(page, usersPageLimit));
+    }
+
+    useEffect(() => {
+        dispatch<any>(fetchUsers(usersCurrentPage, usersPageLimit));
+    }, [usersCurrentPage, usersPageLimit])
 
     return (
         <div>
