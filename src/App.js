@@ -12,7 +12,7 @@ const MyProfileContainer = lazy(() => import('./components/Profile/MyProfile/MyP
 const MessagesContainer = lazy(() => import('./components/Messages/MessagesContainer'));
 const UsersContainer = lazy(() => import('./components/Users/UsersPage'));
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
-const LoginContainer = lazy(() => import('./components/Login/LoginContainer'));
+const LoginContainer = lazy(() => import('./components/Login/LoginPage'));
 
 const App = ({ initializeApp, isInitialized }) => {
 
