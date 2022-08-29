@@ -3,12 +3,13 @@ import User from "./User/User";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    selectFetchingItems,
+    selectFetchingItems, selectIsLoading,
     selectUsers, selectUsersCurrentPage,
     selectUsersPageLimit,
     selectUsersTotal
 } from "../../redux/selectors/usersSelector";
 import { usersActions, fetchUsers, setFollowUser } from "../../redux/reducers/usersReducer";
+import Preloader from "../Preloader/Preloader";
 
 const Users = () => {
     const users = useSelector(selectUsers);
@@ -16,6 +17,7 @@ const Users = () => {
     const usersPageLimit = useSelector(selectUsersPageLimit);
     const usersCurrentPage = useSelector(selectUsersCurrentPage);
     const fetchingItems = useSelector(selectFetchingItems);
+    const isLoading = useSelector(selectIsLoading);
 
     const dispatch = useDispatch();
 
@@ -29,7 +31,8 @@ const Users = () => {
     }, [usersCurrentPage, usersPageLimit])
 
     return (
-        <div>
+        <>
+            { isLoading && <Preloader /> }
             {users.map(user => (
                 <User
                     key={user.id}
@@ -42,7 +45,7 @@ const Users = () => {
                 pageLimit={usersPageLimit}
                 currentPage={usersCurrentPage}
                 handlePageChange={handlePageChange} />
-        </div>
+        </>
     )
 }
 

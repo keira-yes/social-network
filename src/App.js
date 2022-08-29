@@ -10,7 +10,7 @@ import "./App.css";
 
 const MyProfileContainer = lazy(() => import('./components/Profile/MyProfile/MyProfileContainer'));
 const MessagesContainer = lazy(() => import('./components/Messages/MessagesContainer'));
-const UsersContainer = lazy(() => import('./components/Users/UsersPage'));
+const Users = lazy(() => import('./components/Users/Users'));
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
 const Login = lazy(() => import('./components/Login/Login'));
 
@@ -34,7 +34,7 @@ const App = ({ initializeApp, isInitialized }) => {
                                 <Route path="/" element={<Navigate to="/profile" />} />
                                 <Route path="profile" element={<MyProfileContainer />} />
                                 <Route path="messages" element={<MessagesContainer />} />
-                                <Route path="users" element={<UsersContainer />} />
+                                <Route path="users" element={<Users />} />
                                 <Route path="users/:id" element={<ProfileContainer />} />
                                 <Route path="login" element={<Login />} />
                                 <Route path='*' element={<NotFound />} />
