@@ -5,19 +5,17 @@ import classes from "./Profile.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProfile, selectStatus } from "../../redux/selectors/profileSelector";
 import { getProfile, getStatus } from "../../redux/reducers/profileReducer/profileReducer";
+import { useParams } from "react-router-dom";
 
-type PropsType = {
-    router: any
-}
-
-const Profile: React.FC<PropsType> = ({ router }) => {
+const Profile = () => {
     const profile = useSelector(selectProfile);
     const status = useSelector(selectStatus);
 
     const dispatch = useDispatch();
+    const params = useParams();
 
     useEffect(() => {
-        const userId = router.params.id;
+        const userId = Number(params.id);
         dispatch<any>(getProfile(userId));
         dispatch<any>(getStatus(userId));
     }, []);

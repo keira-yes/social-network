@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import User from "./User/User";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +21,8 @@ const Users = () => {
     const isLoading = useSelector(selectIsLoading);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handlePageChange = (page: number) => {
         dispatch(usersActions.setCurrentPage(page));
@@ -28,7 +31,12 @@ const Users = () => {
 
     useEffect(() => {
         dispatch<any>(fetchUsers(usersCurrentPage, usersPageLimit));
-    }, [usersCurrentPage, usersPageLimit])
+    }, [usersCurrentPage, usersPageLimit]);
+
+    useEffect(() => {
+        navigate("/users", { replace: true });
+        setSearchParams(`page=${usersCurrentPage}`, { replace: true });
+    }, [usersCurrentPage]);
 
     return (
         <>
