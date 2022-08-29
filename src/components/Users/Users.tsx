@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import User from "./User/User";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +10,7 @@ import {
 } from "../../redux/selectors/usersSelector";
 import { usersActions, fetchUsers, setFollowUser } from "../../redux/reducers/usersReducer";
 import Preloader from "../Preloader/Preloader";
+import { useSearchParams } from "react-router-dom";
 
 const Users = () => {
     const users = useSelector(selectUsers);
@@ -20,9 +20,10 @@ const Users = () => {
     const fetchingItems = useSelector(selectFetchingItems);
     const isLoading = useSelector(selectIsLoading);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
+    const dispatch = useDispatch();
+
+    const pageParams = Number(searchParams.get('page') || 1);
 
     const handlePageChange = (page: number) => {
         dispatch(usersActions.setCurrentPage(page));
@@ -30,12 +31,16 @@ const Users = () => {
     }
 
     useEffect(() => {
-        dispatch<any>(fetchUsers(usersCurrentPage, usersPageLimit));
-    }, [usersCurrentPage, usersPageLimit]);
+        let currentPage = usersCurrentPage;
+        if (pageParams > 1) currentPage = pageParams;
+
+        setSearchParams({ page: String(currentPage) });
+        dispatch(usersActions.setCurrentPage(currentPage));
+        dispatch<any>(fetchUsers(currentPage, usersPageLimit));
+    }, []);
 
     useEffect(() => {
-        navigate("/users", { replace: true });
-        setSearchParams(`page=${usersCurrentPage}`, { replace: true });
+        setSearchParams({ page: String(usersCurrentPage) });
     }, [usersCurrentPage]);
 
     return (

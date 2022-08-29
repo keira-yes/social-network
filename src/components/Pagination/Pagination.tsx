@@ -30,7 +30,7 @@ const Pagination: React.FC<PropsType> = ({ total, pageLimit, paginationLimit = 1
                 <button type="button" onClick={() => setChunkNumber(chunkNumber - 1)}>Prev Page</button>
             }
             {pages
-                .filter(page => page >=leftBorder && page <= rightBorder)
+                .filter(page => page >= leftBorder && page <= rightBorder)
                 .map(page => (
                     <button
                         type="button"
