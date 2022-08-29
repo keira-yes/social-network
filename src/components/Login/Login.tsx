@@ -19,7 +19,12 @@ const Login = () => {
         dispatch<any>(logIn(login, password, rememberMe, captcha));
     }
 
-    return <LoginForm onSubmit={submitForm} captcha={captcha} />
+    return (
+        <>
+            <h1>Login</h1>
+            <LoginForm onSubmit={submitForm} captcha={captcha} />
+        </>
+    )
 }
 
 export default Login;
