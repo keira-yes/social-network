@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import { connect } from "react-redux";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Preloader from "./components/Preloader/Preloader";
 import NotFound from "./components/NotFound/NotFound";
@@ -26,7 +26,7 @@ const App = ({ initializeApp, isInitialized }) => {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className="app">
                 <div className="container">
-                    <HeaderContainer />
+                    <Header />
                     <Sidebar />
                     <main className="main">
                         <Suspense fallback={<Preloader />}>

@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm/LoginForm";
 import { LoginDataType } from "../../types/types";
 import { logIn } from "../../redux/reducers/authReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCaptcha, selectIsAuth } from "../../redux/selectors/loginSelector";
+import { selectCaptcha, selectIsAuth } from "../../redux/selectors/authSelector";
 
 const Login = () => {
     const isAuth = useSelector(selectIsAuth);
