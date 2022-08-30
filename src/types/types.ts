@@ -44,6 +44,13 @@ export type LoginDataType = {
     captcha: string | null
 }
 
+export type MessageType = {
+    message?: string
+    photo?: string
+    userId?: number
+    userName?: string
+}
+
 export enum ResultCode {
     Success = 0,
     Error = 1,
