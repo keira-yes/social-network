@@ -1,14 +1,20 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import classes from "./MessagesBlock.module.css";
+import classes from "./DialogsBlock.module.css";
 
-const MessagesBlock = ({ id, name }) => {
+type PropsType = {
+    id: number
+    name: string
+}
+
+const DialogsBlock: React.FC<PropsType> = ({ id, name }) => {
     const path = `/messages/${id}`
     return (
         <div className={`${classes.block} ${classes.active}`}>
             <NavLink to={path}>{name}</NavLink>
+            <p>Last message...</p>
         </div>
     )
 }
 
-export default MessagesBlock;
+export default DialogsBlock;

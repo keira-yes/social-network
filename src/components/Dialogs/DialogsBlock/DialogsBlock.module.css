@@ -1,6 +1,18 @@
 .block {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
     margin-bottom: 20px;
     cursor: pointer;
+}
+
+.block a {
+    width: 250px;
+}
+
+.block p {
+    flex: 1;
+    margin: 0;
 }
 
 .active a {

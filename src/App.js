@@ -9,7 +9,8 @@ import { initializeApp } from "./redux/reducers/appReducer";
 import "./App.css";
 
 const MyProfileContainer = lazy(() => import('./components/Profile/MyProfile/MyProfileContainer'));
-const MessagesContainer = lazy(() => import('./components/Messages/MessagesContainer'));
+const Dialogs = lazy(() => import('./components/Dialogs/Dialogs'));
+const Messages = lazy(() => import('./components/Messages/Messages'));
 const Users = lazy(() => import('./components/Users/Users'));
 const Profile = lazy(() => import('./components/Profile/Profile'));
 const Login = lazy(() => import('./components/Login/Login'));
@@ -33,7 +34,8 @@ const App = ({ initializeApp, isInitialized }) => {
                             <Routes>
                                 <Route path="/" element={<Navigate to="/profile" />} />
                                 <Route path="profile" element={<MyProfileContainer />} />
-                                <Route path="messages" element={<MessagesContainer />} />
+                                <Route path="messages" element={<Dialogs />} />
+                                <Route path="messages/:id" element={<Messages />} />
                                 <Route path="users" element={<Users />} />
                                 <Route path="users/:id" element={<Profile />} />
                                 <Route path="login" element={<Login />} />
